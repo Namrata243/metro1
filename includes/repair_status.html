@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>
+        Repair Status
+    </title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500&amp;display=swap" rel="stylesheet" />
+    <link href="../css/repair_status.css" rel="stylesheet" />
+    <link href="../css/header.css" rel="stylesheet" />
+    <link href="../css/sidebar.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../js/header.js"></script>
+    <script src="../js/sidebar.js"></script>
+</head>
+
+<body class="bg-gray-100 font-inter">
+
+    <!-- Header -->
+    <div id="header">
+        <div class="header border-b shadow-lg">
+            <div class="left-section">
+                <div class="header-logo">
+                    <img src="../images/logo.jpeg" alt="Metro Shoes Logo" class="logo-img" />
+                </div>
+                <div class="menu-icon" id="menu-icon" onclick="toggleSidebar()">
+                    <i class="fas fa-bars" aria-hidden="true"></i>
+                    <span class="sr-only">Toggle Sidebar</span>
+                </div>
+                <div class="title">All In One</div>
+            </div>
+            <div class="right-section">
+                <span style="padding-right: 10px;font-size:18px"> Date: </span>
+                <div class="date-time" id="date-time"></div>
+                <div class="user-info">
+                    <img src="https://storage.googleapis.com/a1aa/image/krsQPJAtYvISChriEfePfG58BepoeLOkxNKeRN1tfWlQG4MfTA.jpg" alt="Admin Profile" class="profile-img">
+                    <span>Hello Admin</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex h-full">
+        <div id="sidebar" class="sidebar w-1/4 h-full">
+
+
+            <div class="sidebar">
+                <!-- <img alt="Metro Shoes Logo" height="50" src="/images/logo.jpeg" width="150" /> -->
+                <a class="active" href="/includes/dashboard.html"><i
+                        class="fas fa-tachometer-alt"></i><span>Dashboard</span></a>
+                <a href="/includes/all-products.html"><i class="fas fa-box"></i><span>All Products</span></a>
+                <a href="/includes/dns-details.html"><i class="fas fa-plus-square"></i><span>Add Product</span></a>
+                <a href="/includes/edit-product.html"><i class="fas fa-edit"></i><span>Edit Product</span></a>
+                <a href="/includes/product-details.html"><i class="fas fa-eye"></i><span>View Product</span></a>
+                <a href="/includes/add-user.html"><i class="fas fa-user-plus"></i><span>Add User</span></a>
+                <a href="/includes/edit-user.html"><i class="fas fa-user-edit"></i><span>Edit User</span></a>
+                <a href="/includes/all-users.html"><i class="fas fa-users"></i><span>All Users</span></a>
+                <a href="/includes/role-permission.html"><i class="fas fa-user-shield"></i><span>User Roles</span></a>
+                <a href="/includes/reports.html"><i class="fas fa-chart-bar"></i><span>Reports</span></a>
+                <a href="/includes/settings.html"><i class="fas fa-cog"></i><span>Settings</span></a>
+                <a href="/includes/help.html"><i class="fas fa-question-circle"></i><span>Help</span></a>
+                <a href="/includes/logout.html"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a>
+            </div>
+
+        </div>
+
+        <div class="main-content main-wrapper w-full overflow-x-hidden flex-grow" id="main-wrapper">
+            <div class="bg-white shadow-lg rounded-xl p-4 pt-0 border-2 border-gray-200 m-1.5" style="margin-top: 60px; margin-left: 15px; min-height:450px">
+                <div class="top-bar flex justify-between items-center p-2 bg-white" style="position: relative; z-index: 10;">
+                    <h1 class="title text-2xl font-bold text-black-600">Repair Status</h1>
+                   
+                </div>
+                <hr class="border-t-2 border-red-600" />
+
+           
+
+                <div class="search-container mb-1">
+                    <div class="select-wrapper" >
+                        <label for="showroom">Showroom</label>
+                        <select id="showroom" style="width: 150px;">
+                            <option value="CLB">CLB</option>
+                            <option value="CLB">CLB</option>
+                        </select>
+                        <span class="text-xs text-red-600 custom-icon">▼</span>
+                    </div>
+                    <div class="select-wrapper">
+                        <label for="repair-slip">Repair Slip No.</label>
+                         <input type="text" id="repair-slip" placeholder="123456">
+                    </div>
+                    
+                    <button id="check-status">Check Status</button>
+                    
+                </div>
+
+                <br/>
+
+                <div class="table-container overflow-y-auto" id="showroomTableContainer">
+                    <table id="repair-table" class="scrollable-table showroom-details-table w-full table-fixed text-center">
+                        <thead class="bg-pink-200 h-6 sticky-header">
+                            <tr class="text-xs">
+                                <th>Sr. No.</th>
+                                <th>Showroom</th>
+                                <th>Repair Slip No.</th>
+                                <th>Date</th>
+                                <th>Repair Status</th>
+                                <th>Free Field 1</th>
+                                <th>Free Field 2</th>
+                                <th>Free Field 3</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="text-xs">
+                                <td>1.</td>
+                                <td>CLB</td>
+                                <td>123456</td>
+                                <td>17/09/2024</td>
+                                <td>Received from showroom</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>2.</td>
+                                <td>CLB</td>
+                                <td>123456</td>
+                                <td>17/09/2024</td>
+                                <td>Dispatch to showroom</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>3.</td>
+                                <td>CLB</td>
+                                <td>123456</td>
+                                <td>17/09/2024</td>
+                                <td>Received from showroom</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>4.</td>
+                                <td>CLB</td>
+                                <td>123456</td>
+                                <td>17/09/2024</td>
+                                <td>Received from showroom</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>5.</td>
+                                <td>CLB</td>
+                                <td>123456</td>
+                                <td>17/09/2024</td>
+                                <td>Ready for dispatch</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+ <script>
+        document.getElementById('check-status').addEventListener('click', function () {
+            const showroom = document.getElementById('showroom').value;
+            const repairSlip = document.getElementById('repair-slip').value;
+
+            const table = document.getElementById('repair-table');
+            const rows = table.getElementsByTagName('tr');
+
+            for (let i = 1; i < rows.length; i++) {
+                const cells = rows[i].getElementsByTagName('td');
+                const showroomCell = cells[1] ? cells[1].innerText : '';
+                const repairSlipCell = cells[2] ? cells[2].innerText : '';
+
+                if (showroomCell === showroom && repairSlipCell === repairSlip) {
+                    rows[i].style.display = '';
+                } else {
+                    rows[i].style.display = 'none';
+                }
+            }
+        });
+    </script>
+</html>

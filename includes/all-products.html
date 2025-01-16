@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>
+        All Products
+    </title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500&amp;display=swap" rel="stylesheet" />
+    <link href="../css/all-product.css" rel="stylesheet" />
+    <link href="../css/header.css" rel="stylesheet" />
+    <link href="../css/sidebar.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../js/header.js"></script>
+    <script src="../js/sidebar.js"></script>
+    <script src="../js/all-product.js"></script>
+</head>
+
+<body class="bg-gray-100 font-inter">
+
+    <!-- Header -->
+    <div id="header">
+        <div class="header border-b shadow-lg">
+            <div class="left-section">
+                <div class="header-logo">
+                    <img src="../images/logo.jpeg" alt="Metro Shoes Logo" class="logo-img" />
+                </div>
+                <div class="menu-icon" id="menu-icon" onclick="toggleSidebar()">
+                    <i class="fas fa-bars" aria-hidden="true"></i>
+                    <span class="sr-only">Toggle Sidebar</span>
+                </div>
+                <div class="title">All In One</div>
+            </div>
+            <div class="right-section">
+                <span style="padding-right: 10px;font-size:18px"> Date: </span>
+                <div class="date-time" id="date-time"></div>
+                <div class="user-info">
+                    <img src="../images/admin.jpg" alt="Admin Profile" class="profile-img">
+                    <span>Hello Admin</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex h-full">
+        <div id="sidebar" class="sidebar w-1/4 h-full">
+            <div class="sidebar">
+                <a class="active" href="/includes/dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</span></a>
+                <a href="/includes/all-products.html"><i class="fas fa-box"></i> All Products</span></a>
+                <a href="/includes/dns-details.html"><i class="fas fa-plus-square"></i> Add Product</span></a>
+                <a href="/includes/edit-product.html"><i class="fas fa-edit"></i> Edit Product</span></a>
+                <a href="/includes/product-details.html"><i class="fas fa-eye"></i> View Product</span></a>
+                <a href="/includes/add-user.html"><i class="fas fa-user-plus"></i> Add User</span></a>
+                <a href="/includes/edit-user.html"><i class="fas fa-user-edit"></i> Edit User</span></a>
+                <a href="/includes/all-users.html"><i class="fas fa-users"></i> All Users</span></a>
+                <a href="/includes/role-permission.html"><i class="fas fa-user-shield"></i> User Roles</span></a>
+                <a href="/includes/reports.html"><i class="fas fa-chart-bar"></i> Reports</span></a>
+                <a href="/includes/settings.html"><i class="fas fa-cog"></i> Settings</span></a>
+                <a href="/includes/help.html"><i class="fas fa-question-circle"></i> Help</span></a>
+                <a href="/includes/logout.html"><i class="fas fa-sign-out-alt"></i> Logout</span></a>
+            </div>
+        </div>
+
+        <div class="main-content main-wrapper w-3/4 overflow-x-hidden flex-grow" id="main-wrapper">
+            <div class="bg-white shadow-lg rounded-xl p-6 border-2 border-gray-200">
+                <div class="filters w-full lg:w-1/4 bg-white border border-gray-300 rounded-lg p-4 mb-2 lg:mb-0 lg:mr-4 overflow-y-auto h-screen" id="filterContainer">
+                    <div class="filters-header flex justify-between items-center mb-2">
+                        <h3 class="text-lg font-medium">
+                            Filters
+                        </h3>
+                        <button id="clearAllFilters" class="clearbtn text-white px-3 py-1 rounded">
+                            Clear All
+                        </button>
+                        <span class="icon" style="cursor: pointer; margin-left: 8px; position: relative;" title="Toggle Filters" id="toggleFilters">
+                            <i class="fas fa-times" aria-hidden="true" id="xIcon" style="z-index: 1;"></i>
+                        </span>
+                    </div>
+
+                    <div id="filtersDiv" class="filters" style="display: none;">
+                    </div>
+                    <div class="filters-section mb-4">
+                        <div class="filter-group">
+                            <label for="genderFilter" class="block text-lg font-bold text-gray-700">
+                                Gender
+                            </label>
+                            <div class="multiselect-dropdown relative inline-block w-full">
+                                <div class="dropdown-toggle w-full p-1 bg-gray-200 border border-gray-300 rounded-lg cursor-pointer text-left flex justify-between items-center text-xs">
+                                    <span>Select Gender</span>
+                                    <span class="text-xs text-red-600">▼</span>
+                                </div>
+                                <div class="dropdown-menu hidden absolute top-full left-0 w-full bg-white border border-gray-300 rounded-lg shadow-lg z-10 max-h-24 overflow-y-auto">
+                                    <label class="block p-2 cursor-pointer hover:bg-gray-200 text-xs">
+                                        <input type="checkbox" value="Male"> Male
+                                    </label>
+                                    <label class="block p-2 cursor-pointer hover:bg-gray-200 text-xs">
+                                        <input type="checkbox" value="Female"> Female
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="selected-options mt-1 text-xs">
+                                Selected: <span class="text-red-600 font-bold">None</span>
+                            </div>
+                        </div>
+
+                        <div class="filter-group">
+                            <label for="brandFilter" class="block text-lg font-bold text-gray-700">
+                                Brand
+                            </label>
+                            <div class="multiselect-dropdown relative inline-block w-full">
+                                <div class="dropdown-toggle w-full p-1 bg-gray-200 border border-gray-300 rounded-lg cursor-pointer text-left flex justify-between items-center text-xs">
+                                    <span>Select Brand</span>
+                                    <span class="text-xs text-red-600">▼</span>
+                                </div>
+                                <div class="dropdown-menu hidden absolute top-full left-0 w-full bg-white border border-gray-300 rounded-lg shadow-lg z-10 max-h-24 overflow-y-auto">
+                                    <label class="block p-2 cursor-pointer hover:bg-gray-200 text-xs">
+                                        <input type="checkbox" value="Nike"> Nike
+                                    </label>
+                                    <label class="block p-2 cursor-pointer hover:bg-gray-200 text-xs">
+                                        <input type="checkbox" value="Adidas"> Adidas
+                                    </label>
+                                    <label class="block p-2 cursor-pointer hover:bg-gray-200 text-xs">
+                                        <input type="checkbox" value="Puma"> Puma
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="selected-options mt-1 text-xs">
+                                Selected: <span class="text-red-600 font-bold">None</span>
+                            </div>
+                        </div>
+
+                        <div class="filter-group">
+                            <label for="categoryFilter" class="block text-lg font-bold text-gray-700 mb-2">
+                                Category
+                            </label>
+                            <div class="multiselect-dropdown relative inline-block w-full">
+                                <div class="dropdown-toggle w-full p-1 bg-gray-200 border border-gray-300 rounded-lg cursor-pointer text-left flex justify-between items-center">
+                                    <span>Select Categories</span>
+                                    <span class="text-xs text-red-600">▼</span>
+                                </div>
+                                <div class="dropdown-menu hidden absolute top-full left-0 w-full bg-white border border-gray-300 rounded-lg shadow-lg z-10 max-h-24 overflow-y-auto">
+                                    <label class="block p-2 cursor-pointer hover:bg-gray-200 text-xs">
+                                        <input type="checkbox" value="Shoes"> Shoes
+                                    </label>
+                                    <label class="block p-2 cursor-pointer hover:bg-gray-200 text-xs">
+                                        <input type="checkbox" value="Clothing"> Clothing
+                                    </label>
+                                    <label class="block p-2 cursor-pointer hover:bg-gray-200 text-xs">
+                                        <input type="checkbox" value="Accessories"> Accessories
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="selected-options mt-1 text-xs">
+                                Selected: <span class="text-red-600 font-bold">None</span>
+                            </div>
+                        </div>
+                        <div class="filter-group">
+                            <label for="categoryFilter" class="block text-lg font-bold text-gray-700 mb-2">
+                               Sub Category
+                            </label>
+                            <div class="multiselect-dropdown relative inline-block w-full">
+                                <div class="dropdown-toggle w-full p-1 bg-gray-200 border border-gray-300 rounded-lg cursor-pointer text-left flex justify-between items-center">
+                                    <span>Select Sub Categories</span>
+                                    <span class="text-xs text-red-600">▼</span>
+                                </div>
+                                <div class="dropdown-menu hidden absolute top-full left-0 w-full bg-white border border-gray-300 rounded-lg shadow-lg z-10 max-h-24 overflow-y-auto">
+                                    <label class="block p-2 cursor-pointer hover:bg-gray-200 text-xs">
+                                        <input type="checkbox" value="Shoes"> Shoes
+                                    </label>
+                                    <label class="block p-2 cursor-pointer hover:bg-gray-200 text-xs">
+                                        <input type="checkbox" value="Clothing"> Clothing
+                                    </label>
+                                    <label class="block p-2 cursor-pointer hover:bg-gray-200 text-xs">
+                                        <input type="checkbox" value="Accessories"> Accessories
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="selected-options mt-1 text-xs">
+                                Selected: <span class="text-red-600 font-bold">None</span>
+                            </div>
+                        </div>
+
+
+                        <div class="filter-group">
+                            <label for="generalAssortmentGroupFilter" class="block text-lg font-bold text-gray-700">
+                                Assortment Group
+                            </label>
+                            <div class="multiselect-dropdown relative inline-block w-full">
+                                <div class="dropdown-toggle w-full p-1 bg-gray-200 border border-gray-300 rounded-lg cursor-pointer text-left flex justify-between items-center">
+                                    <span>Select Assortment Group</span>
+                                    <span class="text-xs text-red-600">▼</span>
+                                </div>
+                                <div class="dropdown-menu hidden absolute top-full left-0 w-full bg-white border border-gray-300 rounded-lg shadow-lg z-10 max-h-24 overflow-y-auto">
+                                    <label class="block p-2 cursor-pointer hover:bg-gray-200 text-xs">
+                                        <input type="checkbox" value="Showroom"> Showroom
+                                    </label>
+                                    <label class="block p-2 cursor-pointer hover:bg-gray-200 text-xs">
+                                        <input type="checkbox" value="AG1"> AG1
+                                    </label>
+                                    <label class="block p-2 cursor-pointer hover:bg-gray-200 text-xs">
+                                        <input type="checkbox" value="AG2"> AG2
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="selected-options mt-1 text-xs">
+                                Selected: <span class="text-red-600 font-bold">None</span>
+                            </div>
+                        </div>
+
+                        <div class="price-range mb-4">
+                            <h4 class="mb-2 text-lg font-bold text-gray-700">
+                                Price Range:
+                            </h4>
+                            <div class="price-slider mb-4">
+                                <input id="minPrice" max="5000" min="0" step="10" type="range" value="0" />
+                                <input id="maxPrice" max="5000" min="0" step="10" type="range" value="5000" />
+                                <div class="slider-track" id="sliderTrack">
+                                </div>
+                                <div class="tooltip" id="minTooltip">
+                                    ₹0
+                                </div>
+                                <div class="tooltip" id="maxTooltip">
+                                    ₹5000
+                                </div>
+                            </div>
+                            <div class="price-labels">
+                                <span id="minPriceLabel">
+                                    ₹0
+                                </span>
+                                <span id="maxPriceLabel">
+                                    ₹5000
+                                </span>
+                            </div>
+                        </div>
+                        <div class="filter-group">
+                            <label for="showroomFilter" class="block text-lg font-bold text-gray-700">
+                                Showroom
+                            </label>
+                            <div class="multiselect-dropdown relative inline-block w-full">
+                                <div class="dropdown-toggle w-full p-1 bg-gray-200 border border-gray-300 rounded-lg cursor-pointer text-left flex justify-between items-center text-xs">
+                                    <span>Select Showroom</span>
+                                    <span class="text-xs text-red-600">▼</span>
+                                </div>
+                                <div class="dropdown-menu hidden absolute top-full left-0 w-full bg-white border border-gray-300 rounded-lg shadow-lg z-10 max-h-24 overflow-y-auto">
+                                    <label class="block p-2 cursor-pointer hover:bg-gray-200 text-xs">
+                                        <input type="checkbox" value="Showroom 1"> Showroom 1
+                                    </label>
+                                    <label class="block p-2 cursor-pointer hover:bg-gray-200 text-xs">
+                                        <input type="checkbox" value="Showroom 2"> Showroom 2
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="selected-options mt-1 text-xs">
+                                Selected: <span class="text-red-600 font-bold">None</span>
+                            </div>
+                        </div>
+
+                        <div class="filter-group">
+                            <label for="ag1Filter" class="block text-lg font-bold text-gray-700">
+                                AG1 Options
+                            </label>
+                            <div class="multiselect-dropdown relative inline-block w-full">
+                                <div class="dropdown-toggle w-full p-1 bg-gray-200 border border-gray-300 rounded-lg cursor-pointer text-left flex justify-between items-center">
+                                    <span>Select AG Options</span>
+                                    <span class="text-xs text-red-600">▼</span>
+                                </div>
+                                <div class="dropdown-menu hidden absolute top-full left-0 w-full bg-white border border-gray-300 rounded-lg shadow-lg z-10 max-h-24 overflow-y-auto">
+                                    <label class="block p-2 cursor-pointer hover:bg-gray-200 text-xs">
+                                        <input type="checkbox" value="Option 1"> Option 1
+                                    </label>
+                                    <label class="block p-2 cursor-pointer hover:bg-gray-200 text-xs">
+                                        <input type="checkbox" value="Option 2"> Option 2
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="selected-options mt-1 text-xs">
+                                Selected: <span class="text-red-600 font-bold">None</span>
+                            </div>
+                        </div>
+
+                        <div class="filter-group">
+                            <label for="ag2Filter" class="block text-lg font-bold text-gray-700">
+                                AG2 Options
+                            </label>
+                            <div class="multiselect-dropdown relative inline-block w-full">
+                                <div class="dropdown-toggle w-full p-1 bg-gray-200 border border-gray-300 rounded-lg cursor-pointer text-left flex justify-between items-center">
+                                    <span>Select AG Options</span>
+                                    <span class="text-xs text-red-600">▼</span>
+                                </div>
+                                <div class="dropdown-menu hidden absolute top-full left-0 w-full bg-white border border-gray-300 rounded-lg shadow-lg z-10 max-h-24 overflow-y-auto">
+                                    <label class="block p-2 cursor-pointer hover:bg-gray-200 text-xs">
+                                        <input type="checkbox" value="Option 3"> Option 3
+                                    </label>
+                                    <label class="block p-2 cursor-pointer hover:bg-gray-200 text-xs">
+                                        <input type="checkbox" value="Option 4"> Option 4
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="selected-options mt-1 text-xs">
+                                Selected: <span class="text-red-600 font-bold">None</span>
+                            </div>
+                        </div>
+
+                        <div class="filter-group">
+                            <h4 class="mb-2 text-lg font-bold text-gray-700">Size</h4>
+                            <div class="slider">
+                                <div class="slider-item">5</div>
+                                <div class="slider-item">6</div>
+                                <div class="slider-item active">7</div>
+                                <div class="slider-item">8</div>
+                                <div class="slider-item">9</div>
+                                <div class="slider-item">10</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div id="colorFilter" class="relative">
+                        <input class="w-full py-2 pl-10 pr-4 rounded-full bg-pink-100 text-pink-500 placeholder-pink-500 focus:outline-none" placeholder="Search Colors..." type="text" />
+                        <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-pink-500"></i>
+                    </div> -->
+                    <!-- <div class="color-options mb-4">
+                        <h4 class="mb-2">
+                            Color
+                        </h4>
+                        <div id="colorFilter" class="grid grid-cols-6 gap-4 mb-4 text-center">
+                            <div class="color selected" style="background: #ff0000;" data-color="red"></div>
+                            <div class="color" style="background: #0000ff;" data-color="blue"></div>
+                            <div class="color" style="background: #008000;" data-color="green"></div>
+                            <div class="color" style="background: #ffff00;" data-color="yellow"></div>
+                            <div class="color" style="background: #000000;" data-color="black"></div>
+                            <div class="color" style="background: #ffffff;" data-color="white"></div>
+                        </div>
+                    </div> -->
+
+                    <div class="flex flex-col items-center gap-3">
+                        <h4 class="pricebar">Newest</h4>
+                        <div class="flex gap-4">
+                            <button data-sort="price-high" class="pricebar">
+                                Price High to Low
+                            </button>
+                            <button data-sort="price-low" class="pricebar">
+                                Price Low to High
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col items-center gap-3">
+                        <h4 class="mb-2 text-lg font-bold text-gray-700">Sales Rank</h4>
+                        <div class="flex gap-4">
+                            <button data-sort="rank-high" class="inline-flex items-center px-4 py-1 text-sm rounded-full border border-red-600 text-red-600 bg-white hover:bg-red-600 hover:text-white transition">
+                                High to Low
+                            </button>
+                            <button data-sort="rank-low" class="inline-flex items-center px-4 py-1 text-sm rounded-full border border-red-600 text-red-600 bg-white hover:bg-red-600 hover:text-white transition">
+                                Low to High
+                            </button>
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <label for="skuFilter" class="block text-lg font-bold text-gray-700">
+                            SKU
+                        </label>
+                        <div class="multiselect-dropdown relative inline-block w-full">
+                            <div class="dropdown-toggle w-full p-1 bg-gray-200 border border-gray-300 rounded-lg cursor-pointer text-left flex justify-between items-center text-xs">
+                                <span>Select SKU</span>
+                                <span class="text-xs text-red-600">▼</span>
+                            </div>
+                            <div class="dropdown-menu hidden absolute top-full left-0 w-full bg-white border border-gray-300 rounded-lg shadow-lg z-10 max-h-24 overflow-y-auto">
+                                <label class="block p-2 cursor-pointer hover:bg-gray-200 text-xs">
+                                    <input type="checkbox" value="SKU 1"> SKU 1
+                                </label>
+                                <label class="block p-2 cursor-pointer hover:bg-gray-200 text-xs">
+                                    <input type="checkbox" value="SKU 2"> SKU 2
+                                </label>
+                            </div>
+                        </div>
+                        <div class="selected-options mt-1 text-xs">
+                            Selected: <span class="text-red-600 font-bold">None</span>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="vendorFilter" class="block text-lg font-bold text-gray-700">Search By Vendor Name</label>
+                        <input type="text" id="vendorFilter" class="w-full p-2 border border-gray-300 rounded text-gray-700" placeholder="Search Product by Vendor" />
+                    </div>
+                    <div class="filter-group">
+                        <label for="stateFilter" class="block text-lg font-bold text-gray-700">
+                            State
+                        </label>
+                        <div class="multiselect-dropdown relative inline-block w-full">
+                            <div class="dropdown-toggle w-full p-1 bg-gray-200 border border-gray-300 rounded-lg cursor-pointer text-left flex justify-between items-center">
+                                <span>Select State</span>
+                                <span class="text-xs text-red-600">▼</span>
+                            </div>
+                            <div class="dropdown-menu hidden absolute top-full left-0 w-full bg-white border border-gray-300 rounded-lg shadow-lg z-10 max-h-24 overflow-y-auto">
+                                <label class="block p-2 cursor-pointer hover:bg-gray-200 text-xs">
+                                    <input type="checkbox" value="State 1"> State 1
+                                </label>
+                                <label class="block p-2 cursor-pointer hover:bg-gray-200 text-xs">
+                                    <input type="checkbox" value="State 2"> State 2
+                                </label>
+                            </div>
+                        </div>
+                        <div class="selected-options mt-1 text-xs">
+                            Selected: <span class="text-red-600 font-bold">None</span>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="cityFilter" class="block text-lg font-bold text-gray-700">
+                            City
+                        </label>
+                        <div class="multiselect-dropdown relative inline-block w-full">
+                            <div class="dropdown-toggle w-full p-1 bg-gray-200 border border-gray-300 rounded-lg cursor-pointer text-left flex justify-between items-center">
+                                <span>Select City</span>
+                                <span class="text-xs text-red-600">▼</span>
+                            </div>
+                            <div class="dropdown-menu hidden absolute top-full left-0 w-full bg-white border border-gray-300 rounded-lg shadow-lg z-10 max-h-24 overflow-y-auto">
+                                <label class="block p-2 cursor-pointer hover:bg-gray-200 text-xs">
+                                    <input type="checkbox" value="City 1"> City 1
+                                </label>
+                                <label class="block p-2 cursor-pointer hover:bg-gray-200 text-xs">
+                                    <input type="checkbox" value="City 2"> City 2
+                                </label>
+                            </div>
+                        </div>
+                        <div class="selected-options mt-1 text-xs">
+                            Selected: <span class="text-red-600 font-bold">None</span>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="showroomFilter" class="block text-lg font-bold text-gray-700">Showroom</label>
+                        <select id="showroomFilter" class="w-full p-2 border border-gray-300 rounded text-gray-700">
+                            <option value="">Search for Showroom</option>
+                            <option value="showroom1">Showroom 1</option>
+                            <option value="showroom2">Showroom 2</option>
+                            <option value="showroom3">Showroom 3</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <div class="multiselect-dropdown relative inline-block w-full">
+                            <div class="dropdown-toggle w-full p-1 bg-gray-200 border border-gray-300 rounded-lg cursor-pointer text-left flex justify-between items-center">
+                                <span>Select Manager</span>
+                                <span class="text-xs text-red-600">▼</span>
+                            </div>
+                            <div class="dropdown-menu hidden absolute top-full left-0 w-full bg-white border border-gray-300 rounded-lg shadow-lg z-10 max-h-24 overflow-y-auto">
+                                <label class="block p-2 cursor-pointer hover:bg-gray-200 text-xs">
+                                    <input type="checkbox" value="Manager 1"> Manager 1
+                                </label>
+                                <label class="block p-2 cursor-pointer hover:bg-gray-200 text-xs">
+                                    <input type="checkbox" value="Manager 2"> Manager 2
+                                </label>
+                            </div>
+                        </div>
+                        <div class="selected-options mt-1 text-xs">
+                            Selected: <span class="text-red-600 font-bold">None</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-section flex-1 overflow-x-hidden">
+                    <div class="top-bar flex justify-between items-center mb-2">
+                        <div class="search-bar flex w-full max-w-lg">
+                            <input id="productSearch" class="flex-1 p-0.5 border border-gray-300 rounded-l placeholder-[#fc000089] text-sm" placeholder="Search DNS and items..." type="text" style="padding-left: 10px; ::placeholder { color: #FDF2F4; }" />
+                            <button id="searchButton" class="bg-[#FC0000] text-white px-2 py-1 rounded-r text-sm">
+                                <i class="fas fa-search"></i>
+                            </button>
+
+                        </div>
+
+                        <span class="icon" style="cursor: pointer; margin-left: 8px; position: relative;" title="Toggle Filters" id="toggleFiltersEye">
+                            <i class="fas fa-eye" aria-hidden="true" id="eyeIcon" ></i>
+                        </span>
+                        <div class="actions flex space-x-2">
+                            <button id="gridViewButton" class="bg-[#FDF2F4] text-[#FC0000] px-2 py-1 rounded !important text-sm">
+                                <i class="fas fa-th"></i>
+                            </button>
+                            <button id="listViewButton" class="bg-[#FDF2F4] text-[#FC0000] px-2 py-1 rounded !important text-sm">
+                                <i class="fas fa-th-list"></i>
+                            </button>
+                            <select id="reportDownload" class="border border-[#FC0000] rounded p-1">
+                                <option value="">Select Report Type</option>
+                                <option value="sales">Sales Report</option>
+                                <option value="inventory">Inventory Report</option>
+                                <option value="customer">Customer Report</option>
+                            </select>
+                            <button class="downloadbuttonn">
+                                Download
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-grid grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" style="max-height: 600px; overflow-y: hidden;">
+                        <a href="/includes/product-details.html">
+                            <div class="product-card pb-1 h-80 overflow-hidden flex flex-col justify-between p-1 relative">
+                                <img class="object-cover h-50" src="https://storage.googleapis.com/a1aa/image/4vC3zZPHYoobABUa7TF1kGjalRYYKv2MMhPhEgNOcqfdyjfTA.jpg" alt="Black Casual Slippers" />
+                                <div class="absolute top-2 left-2 flex space-x-1">
+                                    <div class="rank bg-white text-black border border-blue-500 px-1 py-0.5 rounded-sm shadow-md text-center text-xs">
+                                        Rank 4
+                                    </div>
+                                    <div class="number bg-white text-black border border-blue-500 px-1 py-0.5 rounded-sm shadow-md text-center text-xs">
+                                        19
+                                    </div>
+                                    <div class="number bg-white text-black border border-blue-500 px-1 py-0.5 rounded-sm shadow-md text-center text-xs">
+                                        458
+                                    </div>
+                                    <div class="rank-5 bg-white text-black-500 border border-[#FC0000] px-1 py-0.5 rounded-sm shadow-md text-center text-xs">
+                                        Rank 5
+                                    </div>
+                                </div>
+                                <div class="colors flex justify-center space-x-1 mb-1">
+                                    <div class="color w-3 h-3 rounded-full border border-gray-300 cursor-pointer mt-1.5" style="background: purple;"></div>
+                                    <div class="color w-3 h-3 rounded-full border border-gray-300 cursor-pointer mt-1.5" style="background: green;"></div>
+                                    <div class="color w-3 h-3 rounded-full border border-gray-300 cursor-pointer mt-1.5" style="background: pink;"></div>
+                                </div>
+                                <h4 class="text-xs font-smaller">
+                                    Men Black Casual Slippers
+                                </h4>
+                                <p class="brand text-gray-500 mb-1 text-xs">
+                                    Metro
+                                </p>
+                                <p class="price text-lg font-bold text-theme-color mt-auto">
+                                    ₹1250
+                                </p>
+                            </div>
+                        </a>
+                        <a href="/includes/product-details.html">
+                            <div class="product-card pb-1 h-80 overflow-hidden flex flex-col justify-between p-1 relative">
+                                <img class="object-cover h-50" src="https://storage.googleapis.com/a1aa/image/4vC3zZPHYoobABUa7TF1kGjalRYYKv2MMhPhEgNOcqfdyjfTA.jpg" alt="Black Casual Slippers" />
+                                <div class="absolute top-2 left-2 flex space-x-1">
+                                    <div class="rank bg-white text-black border border-blue-500 px-1 py-0.5 rounded-sm shadow-md text-center text-xs">
+                                        Rank 4
+                                    </div>
+                                    <div class="number bg-white text-black border border-blue-500 px-1 py-0.5 rounded-sm shadow-md text-center text-xs">
+                                        19
+                                    </div>
+                                    <div class="number bg-white text-black border border-blue-500 px-1 py-0.5 rounded-sm shadow-md text-center text-xs">
+                                        458
+                                    </div>
+                                    <div class="rank-5 bg-white text-black-500 border border-[#FC0000] px-1 py-0.5 rounded-sm shadow-md text-center text-xs">
+                                        Rank 5
+                                    </div>
+                                </div>
+                                <div class="colors flex justify-center space-x-1 mb-1">
+                                    <div class="color w-3 h-3 rounded-full border border-gray-300 cursor-pointer mt-1.5" style="background: purple;"></div>
+                                    <div class="color w-3 h-3 rounded-full border border-gray-300 cursor-pointer mt-1.5" style="background: green;"></div>
+                                    <div class="color w-3 h-3 rounded-full border border-gray-300 cursor-pointer mt-1.5" style="background: pink;"></div>
+                                </div>
+                                <h4 class="text-xs font-smaller">
+                                    Men Black Casual Slippers
+                                </h4>
+                                <p class="brand text-gray-500 mb-1 text-xs">
+                                    Metro
+                                </p>
+                                <p class="price text-lg font-bold text-theme-color mt-auto">
+                                    ₹1250
+                                </p>
+                            </div>
+                        </a>
+                        <a href="/includes/product-details.html">
+                            <div class="product-card pb-1 h-80 overflow-hidden flex flex-col justify-between p-1 relative">
+                                <img class="object-cover h-50" src="https://storage.googleapis.com/a1aa/image/4vC3zZPHYoobABUa7TF1kGjalRYYKv2MMhPhEgNOcqfdyjfTA.jpg" alt="Black Casual Slippers" />
+                                <div class="absolute top-2 left-2 flex space-x-1">
+                                    <div class="rank bg-white text-black border border-blue-500 px-1 py-0.5 rounded-sm shadow-md text-center text-xs">
+                                        Rank 4
+                                    </div>
+                                    <div class="number bg-white text-black border border-blue-500 px-1 py-0.5 rounded-sm shadow-md text-center text-xs">
+                                        19
+                                    </div>
+                                    <div class="number bg-white text-black border border-blue-500 px-1 py-0.5 rounded-sm shadow-md text-center text-xs">
+                                        458
+                                    </div>
+                                    <div class="rank-5 bg-white text-black-500 border border-[#FC0000] px-1 py-0.5 rounded-sm shadow-md text-center text-xs">
+                                        Rank 5
+                                    </div>
+                                </div>
+                                <div class="colors flex justify-center space-x-1 mb-1">
+                                    <div class="color w-3 h-3 rounded-full border border-gray-300 cursor-pointer mt-1.5" style="background: purple;"></div>
+                                    <div class="color w-3 h-3 rounded-full border border-gray-300 cursor-pointer mt-1.5" style="background: green;"></div>
+                                    <div class="color w-3 h-3 rounded-full border border-gray-300 cursor-pointer mt-1.5" style="background: pink;"></div>
+                                </div>
+                                <h4 class="text-xs font-smaller">
+                                    Men Black Casual Slippers
+                                </h4>
+                                <p class="brand text-gray-500 mb-1 text-xs">
+                                    Metro
+                                </p>
+                                <p class="price text-lg font-bold text-theme-color mt-auto">
+                                    ₹1250
+                                </p>
+                            </div>
+                        </a>
+                        <a href="/includes/product-details.html">
+                            <div class="product-card pb-1 h-80 overflow-hidden flex flex-col justify-between p-1 relative">
+                                <img class="object-cover h-50" src="https://storage.googleapis.com/a1aa/image/4vC3zZPHYoobABUa7TF1kGjalRYYKv2MMhPhEgNOcqfdyjfTA.jpg" alt="Black Casual Slippers" />
+                                <div class="absolute top-2 left-2 flex space-x-1">
+                                    <div class="rank bg-white text-black border border-blue-500 px-1 py-0.5 rounded-sm shadow-md text-center text-xs">
+                                        Rank 4
+                                    </div>
+                                    <div class="number bg-white text-black border border-blue-500 px-1 py-0.5 rounded-sm shadow-md text-center text-xs">
+                                        19
+                                    </div>
+                                    <div class="number bg-white text-black border border-blue-500 px-1 py-0.5 rounded-sm shadow-md text-center text-xs">
+                                        458
+                                    </div>
+                                    <div class="rank-5 bg-white text-black-500 border border-[#FC0000] px-1 py-0.5 rounded-sm shadow-md text-center text-xs">
+                                        Rank 5
+                                    </div>
+                                </div>
+                                <div class="colors flex justify-center space-x-1 mb-1">
+                                    <div class="color w-3 h-3 rounded-full border border-gray-300 cursor-pointer mt-1.5" style="background: purple;"></div>
+                                    <div class="color w-3 h-3 rounded-full border border-gray-300 cursor-pointer mt-1.5" style="background: green;"></div>
+                                    <div class="color w-3 h-3 rounded-full border border-gray-300 cursor-pointer mt-1.5" style="background: pink;"></div>
+                                </div>
+                                <h4 class="text-xs font-smaller">
+                                    Men Black Casual Slippers
+                                </h4>
+                                <p class="brand text-gray-500 mb-1 text-xs">
+                                    Metro
+                                </p>
+                                <p class="price text-lg font-bold text-theme-color mt-auto">
+                                    ₹1250
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="product-grid grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" style="max-height: 600px; overflow-y: hidden;">
+                        <a href="/includes/product-details.html">
+                            <div class="product-card pb-1 h-80 overflow-hidden flex flex-col justify-between p-1 relative">
+                                <img class="object-cover h-50" src="https://storage.googleapis.com/a1aa/image/4vC3zZPHYoobABUa7TF1kGjalRYYKv2MMhPhEgNOcqfdyjfTA.jpg" alt="Black Casual Slippers" />
+                                <div class="absolute top-2 left-2 flex space-x-1">
+                                    <div class="rank bg-white text-black border border-blue-500 px-1 py-0.5 rounded-sm shadow-md text-center text-xs">
+                                        Rank 4
+                                    </div>
+                                    <div class="number bg-white text-black border border-blue-500 px-1 py-0.5 rounded-sm shadow-md text-center text-xs">
+                                        19
+                                    </div>
+                                    <div class="number bg-white text-black border border-blue-500 px-1 py-0.5 rounded-sm shadow-md text-center text-xs">
+                                        458
+                                    </div>
+                                    <div class="rank-5 bg-white text-black-500 border border-[#FC0000] px-1 py-0.5 rounded-sm shadow-md text-center text-xs">
+                                        Rank 5
+                                    </div>
+                                </div>
+                                <div class="colors flex justify-center space-x-1 mb-1">
+                                    <div class="color w-3 h-3 rounded-full border border-gray-300 cursor-pointer mt-1.5" style="background: purple;"></div>
+                                    <div class="color w-3 h-3 rounded-full border border-gray-300 cursor-pointer mt-1.5" style="background: green;"></div>
+                                    <div class="color w-3 h-3 rounded-full border border-gray-300 cursor-pointer mt-1.5" style="background: pink;"></div>
+                                </div>
+                                <h4 class="text-xs font-smaller">
+                                    Men Black Casual Slippers
+                                </h4>
+                                <p class="brand text-gray-500 mb-1 text-xs">
+                                    Metro
+                                </p>
+                                <p class="price text-lg font-bold text-theme-color mt-auto">
+                                    ₹1250
+                                </p>
+                            </div>
+                        </a>
+                        <a href="/includes/product-details.html">
+                            <div class="product-card pb-1 h-80 overflow-hidden flex flex-col justify-between p-1 relative">
+                                <img class="object-cover h-50" src="https://storage.googleapis.com/a1aa/image/4vC3zZPHYoobABUa7TF1kGjalRYYKv2MMhPhEgNOcqfdyjfTA.jpg" alt="Black Casual Slippers" />
+                                <div class="absolute top-2 left-2 flex space-x-1">
+                                    <div class="rank bg-white text-black border border-blue-500 px-1 py-0.5 rounded-sm shadow-md text-center text-xs">
+                                        Rank 4
+                                    </div>
+                                    <div class="number bg-white text-black border border-blue-500 px-1 py-0.5 rounded-sm shadow-md text-center text-xs">
+                                        19
+                                    </div>
+                                    <div class="number bg-white text-black border border-blue-500 px-1 py-0.5 rounded-sm shadow-md text-center text-xs">
+                                        458
+                                    </div>
+                                    <div class="rank-5 bg-white text-black-500 border border-[#FC0000] px-1 py-0.5 rounded-sm shadow-md text-center text-xs">
+                                        Rank 5
+                                    </div>
+                                </div>
+                                <div class="colors flex justify-center space-x-1 mb-1">
+                                    <div class="color w-3 h-3 rounded-full border border-gray-300 cursor-pointer mt-1.5" style="background: purple;"></div>
+                                    <div class="color w-3 h-3 rounded-full border border-gray-300 cursor-pointer mt-1.5" style="background: green;"></div>
+                                    <div class="color w-3 h-3 rounded-full border border-gray-300 cursor-pointer mt-1.5" style="background: pink;"></div>
+                                </div>
+                                <h4 class="text-xs font-smaller">
+                                    Men Black Casual Slippers
+                                </h4>
+                                <p class="brand text-gray-500 mb-1 text-xs">
+                                    Metro
+                                </p>
+                                <p class="price text-lg font-bold text-theme-color mt-auto">
+                                    ₹1250
+                                </p>
+                            </div>
+                        </a>
+                        <a href="/includes/product-details.html">
+                            <div class="product-card pb-1 h-80 overflow-hidden flex flex-col justify-between p-1 relative">
+                                <img class="object-cover h-50" src="https://storage.googleapis.com/a1aa/image/4vC3zZPHYoobABUa7TF1kGjalRYYKv2MMhPhEgNOcqfdyjfTA.jpg" alt="Black Casual Slippers" />
+                                <div class="absolute top-2 left-2 flex space-x-1">
+                                    <div class="rank bg-white text-black border border-blue-500 px-1 py-0.5 rounded-sm shadow-md text-center text-xs">
+                                        Rank 4
+                                    </div>
+                                    <div class="number bg-white text-black border border-blue-500 px-1 py-0.5 rounded-sm shadow-md text-center text-xs">
+                                        19
+                                    </div>
+                                    <div class="number bg-white text-black border border-blue-500 px-1 py-0.5 rounded-sm shadow-md text-center text-xs">
+                                        458
+                                    </div>
+                                    <div class="rank-5 bg-white text-black-500 border border-[#FC0000] px-1 py-0.5 rounded-sm shadow-md text-center text-xs">
+                                        Rank 5
+                                    </div>
+                                </div>
+                                <div class="colors flex justify-center space-x-1 mb-1">
+                                    <div class="color w-3 h-3 rounded-full border border-gray-300 cursor-pointer mt-1.5" style="background: purple;"></div>
+                                    <div class="color w-3 h-3 rounded-full border border-gray-300 cursor-pointer mt-1.5" style="background: green;"></div>
+                                    <div class="color w-3 h-3 rounded-full border border-gray-300 cursor-pointer mt-1.5" style="background: pink;"></div>
+                                </div>
+                                <h4 class="text-xs font-smaller">
+                                    Men Black Casual Slippers
+                                </h4>
+                                <p class="brand text-gray-500 mb-1 text-xs">
+                                    Metro
+                                </p>
+                                <p class="price text-lg font-bold text-theme-color mt-auto">
+                                    ₹1250
+                                </p>
+                            </div>
+                        </a>
+                        <a href="/includes/product-details.html">
+                            <div class="product-card pb-1 h-80 overflow-hidden flex flex-col justify-between p-1 relative">
+                                <img class="object-cover h-50" src="https://storage.googleapis.com/a1aa/image/4vC3zZPHYoobABUa7TF1kGjalRYYKv2MMhPhEgNOcqfdyjfTA.jpg" alt="Black Casual Slippers" />
+                                <div class="absolute top-2 left-2 flex space-x-1">
+                                    <div class="rank bg-white text-black border border-blue-500 px-1 py-0.5 rounded-sm shadow-md text-center text-xs">
+                                        Rank 4
+                                    </div>
+                                    <div class="number bg-white text-black border border-blue-500 px-1 py-0.5 rounded-sm shadow-md text-center text-xs">
+                                        19
+                                    </div>
+                                    <div class="number bg-white text-black border border-blue-500 px-1 py-0.5 rounded-sm shadow-md text-center text-xs">
+                                        458
+                                    </div>
+                                    <div class="rank-5 bg-white text-black-500 border border-[#FC0000] px-1 py-0.5 rounded-sm shadow-md text-center text-xs">
+                                        Rank 5
+                                    </div>
+                                </div>
+                                <div class="colors flex justify-center space-x-1 mb-1">
+                                    <div class="color w-3 h-3 rounded-full border border-gray-300 cursor-pointer mt-1.5" style="background: purple;"></div>
+                                    <div class="color w-3 h-3 rounded-full border border-gray-300 cursor-pointer mt-1.5" style="background: green;"></div>
+                                    <div class="color w-3 h-3 rounded-full border border-gray-300 cursor-pointer mt-1.5" style="background: pink;"></div>
+                                </div>
+                                <h4 class="text-xs font-smaller">
+                                    Men Black Casual Slippers
+                                </h4>
+                                <p class="brand text-gray-500 mb-1 text-xs">
+                                    Metro
+                                </p>
+                                <p class="price text-lg font-bold text-theme-color mt-auto">
+                                    ₹1250
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="flex justify-between items-center mt-4">
+                        <div class="flex items-center space-x-2 mb-2">
+                            <span>Show result:</span>
+                            <select class="bg-gray-200 p-0 rounded" id="resultsPerPage" onchange="updateResultsPerPage()">
+                                <option value="8">8</option>
+                                <option value="16">16</option>
+                                <option value="24">24</option>
+                            </select>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button class="bg-[var(--primary-color)] pn text-white px-3 py-1 rounded text-xs w-10" onclick="changePage(currentPage - 1)"><i class="fas fa-chevron-left"></i></button>
+                            <button class="bg-[var(--primary-color)] pn text-white px-3 py-1 rounded text-xs w-10" id="page-1" onclick="changePage(1)">1</button>
+                            <button class="bg-[var(--primary-color)] pn text-white px-3 py-1 rounded text-xs w-10" id="page-2" onclick="changePage(2)">2</button>
+                            <button class="bg-[var(--primary-color)] pn text-white px-3 py-1 rounded text-xs w-10" id="page-3" onclick="changePage(3)">3</button>
+                            <button class="bg-[var(--primary-color)] pn text-white px-3 py-1 rounded text-xs w-10" id="page-4" onclick="changePage(4)">4</button>
+                            <span class="text-xs">...</span>
+                            <button class="bg-[var(--primary-color)] pn text-white px-3 py-1 rounded text-xs w-10" onclick="changePage(20)">20</button>
+                            <button class="bg-[var(--primary-color)] pn text-white px-3 py-1 rounded text-xs w-10" onclick="changePage(currentPage + 1)"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+</body>
+
+</html>

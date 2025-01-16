@@ -1,0 +1,85 @@
+.pagination-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    gap:10px;
+  }
+
+  .pagination-container label {
+    margin-right: 5px;
+  }
+
+  .pagination-container select {
+    padding: 5px;
+  }
+
+
+
+  .pagination button {
+    padding: 3px 10px;
+    border: none;
+    background-color: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    color: grey;
+  }
+
+  .pagination button:hover {
+    background-color: #f8d7da;
+    color: #721c24;
+  }
+
+  .pagination button.active {
+    background-color: red;
+    color: white;
+    font-weight: bold;
+  }
+
+
+  .fields-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 05px;
+    align-items: center;
+    margin-bottom: 0px;
+    background-color: #f8d7da;
+    margin-top:  10px; /* Space between rows */
+    font-weight: bold;
+  }
+  
+
+  .fields-row label {
+   
+    padding: 8px;
+    border-radius: 2px;
+    color:black;
+    font-size: 14px;
+  }
+
+  .fields-row select,
+  .fields-row input,
+  .fields-row button {
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+
+  .fields-row select,
+  .fields-row input {
+    flex: 1;
+  }
+  .fields-row button:nth-of-type(1) {
+  background-color: rgb(213, 216, 215); /* OK button background */;
+  border:1px solid black;
+  color: black;
+}
+
+  .fields-row button {
+    background-color: red;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }

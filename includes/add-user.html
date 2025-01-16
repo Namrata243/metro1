@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>
+        Add User
+    </title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500&amp;display=swap" rel="stylesheet" />
+    <link href="../css/add-user.css" rel="stylesheet" />
+    <link href="../css/header.css" rel="stylesheet" />
+    <link href="../css/sidebar.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../js/header.js"></script>
+    <script src="../js/sidebar.js"></script>
+    <script src="../js/add-user.js">
+    </script>
+</head>
+
+<body class="bg-gray-100 font-inter">
+
+    <!-- Header -->
+    <div id="header">
+        <div class="header border-b shadow-lg">
+            <div class="left-section">
+                <div class="header-logo">
+                    <img src="../images/logo.jpeg" alt="Metro Shoes Logo" class="logo-img" />
+                </div>
+                <div class="menu-icon" id="menu-icon" onclick="toggleSidebar()">
+                    <i class="fas fa-bars" aria-hidden="true"></i>
+                    <span class="sr-only">Toggle Sidebar</span>
+                </div>
+                <div class="title">All In One</div>
+            </div>
+            <div class="right-section">
+                <span style="padding-right: 10px;font-size:18px"> Date: </span>
+                <div class="date-time" id="date-time"></div>
+                <div class="user-info">
+                    <img src="../images/admin.jpg" alt="Admin Profile" class="profile-img">
+                    <span>Hello Admin</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex h-full">
+        <div id="sidebar" class="sidebar w-1/4 h-full">
+            <div class="sidebar">
+                <a class="active" href="/includes/dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</span></a>
+                <a href="/includes/all-products.html"><i class="fas fa-box"></i> All Products</span></a>
+                <a href="/includes/dns-details.html"><i class="fas fa-plus-square"></i> Add Product</span></a>
+                <a href="/includes/edit-product.html"><i class="fas fa-edit"></i> Edit Product</span></a>
+                <a href="/includes/product-details.html"><i class="fas fa-eye"></i> View Product</span></a>
+                <a href="/includes/add-user.html"><i class="fas fa-user-plus"></i> Add User</span></a>
+                <a href="/includes/edit-user.html"><i class="fas fa-user-edit"></i> Edit User</span></a>
+                <a href="/includes/all-users.html"><i class="fas fa-users"></i> All Users</span></a>
+                <a href="/includes/role-permission.html"><i class="fas fa-user-shield"></i> User Roles</span></a>
+                <a href="/includes/reports.html"><i class="fas fa-chart-bar"></i> Reports</span></a>
+                <a href="/includes/settings.html"><i class="fas fa-cog"></i> Settings</span></a>
+                <a href="/includes/help.html"><i class="fas fa-question-circle"></i> Help</span></a>
+                <a href="/includes/logout.html"><i class="fas fa-sign-out-alt"></i> Logout</span></a>
+            </div>
+        </div>
+
+        <div class="main-content main-wrapper w-3/4 overflow-x-hidden flex-grow" id="main-wrapper">
+            <div class="bg-white shadow-lg rounded-xl p-6 border-2 border-gray-200" style="margin: 15px;">
+                <div class="top-bar flex justify-center items-center p-2 bg-white" style="position: relative; z-index: 10;">
+                    <h1 class="title text-2xl font-bold text-black-600">Add User</h1>
+                </div>
+                <hr class="border-t-2 border-red-600" />
+
+                <div class="container mx-auto my-10">
+                    <div class="form-group">
+                        <input type="text" id="fullName" placeholder="Enter Full Name">
+                        <input type="text" id="userName" placeholder="Enter User Name">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="phone" placeholder="Enter Phone">
+                        <input type="email" id="email" placeholder="Enter Email">
+                    </div>
+                    <div class="form-group">
+                        <select id="userRole">
+                            <option value="">User Role Type</option>
+                            <option value="admin">Admin</option>
+                            <option value="user">User</option>
+                        </select>
+                        <select id="state">
+                            <option value="">Select State</option>
+                            <option value="state1">State 1</option>
+                            <option value="state2">State 2</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select id="city">
+                            <option value="">Select City</option>
+                            <option value="city1">City 1</option>
+                            <option value="city2">City 2</option>
+                        </select>
+                        <select id="showroom">
+                            <option value="">Select Showroom</option>
+                            <option value="showroom1">Showroom 1</option>
+                            <option value="showroom2">Showroom 2</option>
+                        </select>
+                    </div>
+                    <div class="user-status">
+                        <label>User Status:</label>
+                        <div class="status-group">
+                            <input type="radio" id="active" name="status" value="active">
+                            <label for="active">Active</label>
+                        </div>
+                        <div class="status-group">
+                            <input type="radio" id="deactive" name="status" value="deactive">
+                            <label for="deactive">Deactivate</label>
+                        </div>
+                    </div>
+                    <div class="buttons">
+                        <button type="submit" class="submit">Submit</button>
+                        <button type="button" class="cancel" onclick="resetForm()">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

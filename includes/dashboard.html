@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>
+        All Users
+    </title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500&amp;display=swap" rel="stylesheet" />
+    <link href="../css/dashboard.css" rel="stylesheet" />
+    <link href="../css/header.css" rel="stylesheet" />
+    <link href="../css/sidebar.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../js/header.js"></script>
+    <script src="../js/sidebar.js"></script>
+    <script src="../js/dashboard.js"></script>
+</head>
+
+<body class="bg-gray-100 font-inter">
+
+    <!-- Header -->
+    <div id="header">
+        <div class="header border-b shadow-lg">
+            <div class="left-section">
+                <div class="header-logo">
+                    <img src="../images/logo.jpeg" alt="Metro Shoes Logo" class="logo-img" />
+                </div>
+                <div class="menu-icon" id="menu-icon" onclick="toggleSidebar()">
+                    <i class="fas fa-bars" aria-hidden="true"></i>
+                    <span class="sr-only">Toggle Sidebar</span>
+                </div>
+                <div class="title">All In One</div>
+            </div>
+            <div class="right-section">
+                <span style="padding-right: 10px;font-size:18px"> Date: </span>
+                <div class="date-time" id="date-time"></div>
+                <div class="user-info">
+                    <img src="../images/admin.jpg" alt="Admin Profile" class="profile-img">
+                    <span>Hello Admin</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex h-full">
+        <div id="sidebar" class="sidebar w-1/4 h-full">
+            <div class="sidebar">
+                <a class="active" href="/includes/dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</span></a>
+                <a href="/includes/all-products.html"><i class="fas fa-box"></i> All Products</span></a>
+                <a href="/includes/dns-details.html"><i class="fas fa-plus-square"></i> Add Product</span></a>
+                <a href="/includes/edit-product.html"><i class="fas fa-edit"></i> Edit Product</span></a>
+                <a href="/includes/product-details.html"><i class="fas fa-eye"></i> View Product</span></a>
+                <a href="/includes/add-user.html"><i class="fas fa-user-plus"></i> Add User</span></a>
+                <a href="/includes/edit-user.html"><i class="fas fa-user-edit"></i> Edit User</span></a>
+                <a href="/includes/all-users.html"><i class="fas fa-users"></i> All Users</span></a>
+                <a href="/includes/role-permission.html"><i class="fas fa-user-shield"></i> User Roles</span></a>
+                <a href="/includes/reports.html"><i class="fas fa-chart-bar"></i> Reports</span></a>
+                <a href="/includes/settings.html"><i class="fas fa-cog"></i> Settings</span></a>
+                <a href="/includes/help.html"><i class="fas fa-question-circle"></i> Help</span></a>
+                <a href="/includes/logout.html"><i class="fas fa-sign-out-alt"></i> Logout</span></a>
+            </div>
+        </div>
+
+        <div class="main-content main-wrapper w-3/4 overflow-x-hidden flex-grow" id="main-wrapper">
+            <div class="bg-white shadow-lg rounded-xl p-4 border-2 border-gray-200 mx-2">
+                <div class="max-w-7xl mx-auto">
+                    <div class="flex justify-between items-center mb-4">
+                        <div class="flex items-center space-x-2">
+                            <button class="bg-[var(--button-red)] text-white px-2 py-1 rounded" onclick="showAllUsers()">All Users</button>
+
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button class="bg-[var(--button-red)] text-white px-2 py-1 rounded"><i class="fas fa-filter"></i></button>
+                            <button class="bg-[var(--button-red)] text-white px-2 py-1 rounded" onclick="showVendors()">Vendors</button>
+                            <button class="bg-[var(--button-red)] text-white px-2 py-1 rounded" onclick="showStaff()">Staff</button>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button class="bg-[var(--button-red)] text-white px-4 py-2 rounded" onclick="exportToCSV()">Excel</button>
+                            <div class="relative">
+                                <input type="text" placeholder="Search Users..." class="bg-red-100 text-red-500 px-4 py-2 rounded pl-10" id="userSearch" onkeyup="searchUsers()">
+                                <i class="fas fa-search absolute left-3 top-3 text-red-500"></i>
+                            </div>
+                            <a href="/includes/add-user.html">
+                                <button class="bg-[var(--button-red)] text-white px-4 py-2 rounded flex items-center space-x-2">
+                                    <i class="fas fa-plus"></i>
+                                    <span>Add User</span>
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="overflow-y-auto h-[400px]">
+                        <table class="w-full text-left border-collapse">
+                            <thead class="bg-[#ffc0cb]">
+                                <tr>
+                                    <th class="border-b-2 p-2 text-center">Name</th>
+                                    <th class="border-b-2 p-2 text-center">Type</th>
+                                    <th class="border-b-2 p-2 text-center">Email</th>
+                                    <th class="border-b-2 p-2 text-center">Phone</th>
+                                    <th class="border-b-2 p-2 text-center">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="bg-gray-100 text-center text-sm h-2">
+                                    <td>Ketan Mhatre</td>
+                                    <td>Vendor</td>
+                                    <td>test@test.com</td>
+                                    <td>0123456789</td>
+                                    <td onclick="alert('Edit user details');"><i class="fas fa-edit"></i></td>
+                                </tr>
+                                <tr class="bg-gray-100 text-center text-sm h-2">
+                                    <td>Ketan Mhatre</td>
+                                    <td>Vendor</td>
+                                    <td>test@test.com</td>
+                                    <td>0123456789</td>
+                                    <td onclick="alert('Edit user details');"><i class="fas fa-edit"></i></td>
+                                </tr>
+                                <tr class="bg-gray-100 text-center text-sm h-2">
+                                    <td>Ketan Mhatre</td>
+                                    <td>Vendor</td>
+                                    <td>test@test.com</td>
+                                    <td>0123456789</td>
+                                    <td onclick="alert('Edit user details');"><i class="fas fa-edit"></i></td>
+                                </tr>
+                                <tr class="bg-gray-100 text-center text-sm h-2">
+                                    <td>Ketan Mhatre</td>
+                                    <td>Vendor</td>
+                                    <td>test@test.com</td>
+                                    <td>0123456789</td>
+                                    <td onclick="alert('Edit user details');"><i class="fas fa-edit"></i></td>
+                                </tr>
+                                <tr class="bg-gray-100 text-center text-sm h-2">
+                                    <td>Ketan Mhatre</td>
+                                    <td>Vendor</td>
+                                    <td>test@test.com</td>
+                                    <td>0123456789</td>
+                                    <td onclick="alert('Edit user details');"><i class="fas fa-edit"></i></td>
+                                </tr>
+                                <tr class="bg-gray-100 text-center text-sm h-2">
+                                    <td>Ketan Mhatre</td>
+                                    <td>Vendor</td>
+                                    <td>test@test.com</td>
+                                    <td>0123456789</td>
+                                    <td onclick="alert('Edit user details');"><i class="fas fa-edit"></i></td>
+                                </tr>
+                                <tr class="bg-gray-100 text-center text-sm h-2">
+                                    <td>Ketan Mhatre</td>
+                                    <td>Vendor</td>
+                                    <td>test@test.com</td>
+                                    <td>0123456789</td>
+                                    <td onclick="alert('Edit user details');"><i class="fas fa-edit"></i></td>
+                                </tr>
+                                <tr class="bg-gray-100 text-center text-sm h-2">
+                                    <td>Ketan Mhatre</td>
+                                    <td>Vendor</td>
+                                    <td>test@test.com</td>
+                                    <td>0123456789</td>
+                                    <td onclick="alert('Edit user details');"><i class="fas fa-edit"></i></td>
+                                </tr>
+                                <tr class="bg-gray-100 text-center text-sm h-2">
+                                    <td>Ketan Mhatre</td>
+                                    <td>Vendor</td>
+                                    <td>test@test.com</td>
+                                    <td>0123456789</td>
+                                    <td onclick="alert('Edit user details');"><i class="fas fa-edit"></i></td>
+                                </tr>
+                                <tr class="bg-gray-100 text-center text-sm h-2">
+                                    <td>Ketan Mhatre</td>
+                                    <td>Vendor</td>
+                                    <td>test@test.com</td>
+                                    <td>0123456789</td>
+                                    <td onclick="alert('Edit user details');"><i class="fas fa-edit"></i></td>
+                                </tr>
+                                <tr class="bg-gray-100 text-center text-sm h-2">
+                                    <td>Ketan Mhatre</td>
+                                    <td>Vendor</td>
+                                    <td>test@test.com</td>
+                                    <td>0123456789</td>
+                                    <td onclick="alert('Edit user details');"><i class="fas fa-edit"></i></td>
+                                </tr>
+                                <tr class="bg-gray-100 text-center text-sm h-2">
+                                    <td>Ketan Mhatre</td>
+                                    <td>Vendor</td>
+                                    <td>test@test.com</td>
+                                    <td>0123456789</td>
+                                    <td onclick="alert('Edit user details');"><i class="fas fa-edit"></i></td>
+                                </tr>
+                                <tr class="bg-gray-100 text-center text-sm h-2">
+                                    <td>Ketan Mhatre</td>
+                                    <td>Vendor</td>
+                                    <td>test@test.com</td>
+                                    <td>0123456789</td>
+                                    <td onclick="alert('Edit user details');"><i class="fas fa-edit"></i></td>
+                                </tr>
+                                <tr class="bg-gray-100 text-center text-sm h-2">
+                                    <td>Ketan Mhatre</td>
+                                    <td>Vendor</td>
+                                    <td>test@test.com</td>
+                                    <td>0123456789</td>
+                                    <td onclick="alert('Edit user details');"><i class="fas fa-edit"></i></td>
+                                </tr>
+                                <tr class="bg-gray-100 text-center text-sm h-2">
+                                    <td>Ketan Mhatre</td>
+                                    <td>Vendor</td>
+                                    <td>test@test.com</td>
+                                    <td>0123456789</td>
+                                    <td onclick="alert('Edit user details');"><i class="fas fa-edit"></i></td>
+                                </tr>
+                                <tr class="bg-gray-100 text-center text-sm h-2">
+                                    <td>Ketan Mhatre</td>
+                                    <td>Vendor</td>
+                                    <td>test@test.com</td>
+                                    <td>0123456789</td>
+                                    <td onclick="alert('Edit user details');"><i class="fas fa-edit"></i></td>
+                                </tr>
+                                <tr class="bg-gray-100 text-center text-sm h-2">
+                                    <td>Ketan Mhatre</td>
+                                    <td>Vendor</td>
+                                    <td>test@test.com</td>
+                                    <td>0123456789</td>
+                                    <td onclick="alert('Edit user details');"><i class="fas fa-edit"></i></td>
+                                </tr>
+                                <tr class="bg-gray-100 text-center text-sm h-2">
+                                    <td>Ketan Mhatre</td>
+                                    <td>Vendor</td>
+                                    <td>test@test.com</td>
+                                    <td>0123456789</td>
+                                    <td onclick="alert('Edit user details');"><i class="fas fa-edit"></i></td>
+                                </tr>
+                                <tr class="bg-gray-100 text-center text-sm h-2">
+                                    <td>Ketan Mhatre</td>
+                                    <td>Vendor</td>
+                                    <td>test@test.com</td>
+                                    <td>0123456789</td>
+                                    <td onclick="alert('Edit user details');"><i class="fas fa-edit"></i></td>
+                                </tr>
+                                <tr class="bg-gray-100 text-center text-sm h-2">
+                                    <td>Ketan Mhatre</td>
+                                    <td>Vendor</td>
+                                    <td>test@test.com</td>
+                                    <td>0123456789</td>
+                                    <td onclick="alert('Edit user details');"><i class="fas fa-edit"></i></td>
+                                </tr>
+                                <tr class="bg-gray-100 text-center text-sm h-2">
+                                    <td>Ketan Mhatre</td>
+                                    <td>Vendor</td>
+                                    <td>test@test.com</td>
+                                    <td>0123456789</td>
+                                    <td onclick="alert('Edit user details');"><i class="fas fa-edit"></i></td>
+                                </tr>
+                                <tr class="bg-gray-100 text-center text-sm h-2">
+                                    <td>Ketan Mhatre</td>
+                                    <td>Vendor</td>
+                                    <td>test@test.com</td>
+                                    <td>0123456789</td>
+                                    <td onclick="alert('Edit user details');"><i class="fas fa-edit"></i></td>
+                                </tr>
+                                <tr class="bg-gray-100 text-center text-sm h-2">
+                                    <td>Ketan Mhatre</td>
+                                    <td>Vendor</td>
+                                    <td>test@test.com</td>
+                                    <td>0123456789</td>
+                                    <td onclick="alert('Edit user details');"><i class="fas fa-edit"></i></td>
+                                </tr>
+                                <tr class="bg-gray-100 text-center text-sm h-2">
+                                    <td>Ketan Mhatre</td>
+                                    <td>Vendor</td>
+                                    <td>test@test.com</td>
+                                    <td>0123456789</td>
+                                    <td onclick="alert('Edit user details');"><i class="fas fa-edit"></i></td>
+                                </tr>
+                                <tr class="bg-gray-100 text-center text-sm h-2">
+                                    <td>Ketan Mhatre</td>
+                                    <td>Vendor</td>
+                                    <td>test@test.com</td>
+                                    <td>0123456789</td>
+                                    <td onclick="alert('Edit user details');"><i class="fas fa-edit"></i></td>
+                                </tr>
+                                <tr class="bg-gray-100 text-center text-sm h-2">
+                                    <td>Ketan Mhatre</td>
+                                    <td>Vendor</td>
+                                    <td>test@test.com</td>
+                                    <td>0123456789</td>
+                                    <td onclick="alert('Edit user details');"><i class="fas fa-edit"></i></td>
+                                </tr>
+                                <tr class="bg-gray-100 text-center text-sm h-2">
+                                    <td>Ketan Mhatre</td>
+                                    <td>Vendor</td>
+                                    <td>test@test.com</td>
+                                    <td>0123456789</td>
+                                    <td onclick="alert('Edit user details');"><i class="fas fa-edit"></i></td>
+                                </tr>
+                                <tr class="bg-gray-100 text-center text-sm h-2">
+                                    <td>Ketan Mhatre</td>
+                                    <td>Vendor</td>
+                                    <td>test@test.com</td>
+                                    <td>0123456789</td>
+                                    <td onclick="alert('Edit user details');"><i class="fas fa-edit"></i></td>
+                                </tr>
+                                <tr class="bg-gray-100 text-center text-sm h-2">
+                                    <td>Ketan Mhatre</td>
+                                    <td>Vendor</td>
+                                    <td>test@test.com</td>
+                                    <td>0123456789</td>
+                                    <td onclick="alert('Edit user details');"><i class="fas fa-edit"></i></td>
+                                </tr>
+                                <tr class="bg-gray-100 text-center text-sm h-2">
+                                    <td>Ketan Mhatre</td>
+                                    <td>Vendor</td>
+                                    <td>test@test.com</td>
+                                    <td>0123456789</td>
+                                    <td onclick="alert('Edit user details');"><i class="fas fa-edit"></i></td>
+                                </tr>
+                                <tr class="bg-gray-100 text-center text-sm h-2">
+                                    <td>Ketan Mhatre</td>
+                                    <td>Vendor</td>
+                                    <td>test@test.com</td>
+                                    <td>0123456789</td>
+                                    <td onclick="alert('Edit user details');"><i class="fas fa-edit"></i></td>
+                                </tr>
+                                <tr class="bg-gray-100 text-center text-sm h-2">
+                                    <td>Ketan Mhatre</td>
+                                    <td>Vendor</td>
+                                    <td>test@test.com</td>
+                                    <td>0123456789</td>
+                                    <td onclick="alert('Edit user details');"><i class="fas fa-edit"></i></td>
+                                </tr>
+                                <tr class="bg-gray-100 text-center text-sm h-2">
+                                    <td>Ketan Mhatre</td>
+                                    <td>Vendor</td>
+                                    <td>test@test.com</td>
+                                    <td>0123456789</td>
+                                    <td onclick="alert('Edit user details');"><i class="fas fa-edit"></i></td>
+                                </tr>
+                                <tr class="bg-gray-100 text-center text-sm h-2">
+                                    <td>Ketan Mhatre</td>
+                                    <td>Vendor</td>
+                                    <td>test@test.com</td>
+                                    <td>0123456789</td>
+                                    <td onclick="alert('Edit user details');"><i class="fas fa-edit"></i></td>
+                                </tr>
+                                <tr class="bg-gray-100 text-center text-sm h-2">
+                                    <td>Ketan Mhatre</td>
+                                    <td>Vendor</td>
+                                    <td>test@test.com</td>
+                                    <td>0123456789</td>
+                                    <td onclick="alert('Edit user details');"><i class="fas fa-edit"></i></td>
+                                </tr>
+                                <tr class="bg-gray-100 text-center text-sm h-2">
+                                    <td>Ketan Mhatre</td>
+                                    <td>Vendor</td>
+                                    <td>test@test.com</td>
+                                    <td>0123456789</td>
+                                    <td onclick="alert('Edit user details');"><i class="fas fa-edit"></i></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="flex justify-between items-center mt-4">
+                        <div class="flex items-center space-x-2 mb-2">
+                            <span>Show result:</span>
+                            <select class="bg-gray-200 p-0 rounded" id="resultsPerPage" onchange="updateResultsPerPage()">
+                                <option value="8">8</option>
+                                <option value="16">16</option>
+                                <option value="24">24</option>
+                            </select>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button class="bg-[var(--button-red)] pn text-white px-3 py-1 rounded text-xs w-10" onclick="changePage(currentPage - 1)"><i class="fas fa-chevron-left"></i></button>
+                            <button class="bg-[var(--button-red)] pn text-white px-3 py-1 rounded text-xs w-10" id="page-1" onclick="changePage(1)">1</button>
+                            <button class="bg-[var(--button-red)] pn text-white px-3 py-1 rounded text-xs w-10" id="page-2" onclick="changePage(2)">2</button>
+                            <button class="bg-[var(--button-red)] pn text-white px-3 py-1 rounded text-xs w-10" id="page-3" onclick="changePage(3)">3</button>
+                            <button class="bg-[var(--button-red)] pn text-white px-3 py-1 rounded text-xs w-10" id="page-4" onclick="changePage(4)">4</button>
+                            <span class="text-xs">...</span>
+                            <button class="bg-[var(--button-red)] pn text-white px-3 py-1 rounded text-xs w-10" onclick="changePage(20)">20</button>
+                            <button class="bg-[var(--button-red)] pn text-white px-3 py-1 rounded text-xs w-10" onclick="changePage(currentPage + 1)"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

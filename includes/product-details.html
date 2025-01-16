@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>
+        Products Details
+    </title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500&amp;display=swap" rel="stylesheet" />
+    <link href="../css/product-details.css" rel="stylesheet" />
+    <link href="../css/header.css" rel="stylesheet" />
+    <link href="../css/sidebar.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../js/header.js"></script>
+    <script src="../js/sidebar.js"></script>
+    <script src="../js/product-details.js"></script>
+
+
+</head>
+
+<body class="bg-gray-100 font-inter">
+
+    <!-- Header -->
+    <div id="header">
+        <div class="header border-b shadow-lg">
+            <div class="left-section">
+                <div class="header-logo">
+                    <img src="../images/logo.jpeg" alt="Metro Shoes Logo" class="logo-img" />
+                </div>
+                <div class="menu-icon" id="menu-icon" onclick="toggleSidebar()">
+                    <i class="fas fa-bars" aria-hidden="true"></i>
+                    <span class="sr-only">Toggle Sidebar</span>
+                </div>
+                <div class="title">All In One</div>
+            </div>
+            <div class="right-section">
+                <span style="padding-right: 10px;font-size:18px"> Date: </span>
+                <div class="date-time" id="date-time"></div>
+                <div class="user-info">
+                    <img src="../images/admin.jpg" alt="Admin Profile" class="profile-img">
+                    <span>Hello Admin</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex h-full">
+        <div id="sidebar" class="sidebar w-1/4 h-full">
+
+
+            <div class="sidebar">
+                <!-- <img alt="Metro Shoes Logo" height="50" src="/images/logo.jpeg" width="150" /> -->
+                <a class="active" href="/includes/dashboard.html"><i
+                        class="fas fa-tachometer-alt"></i><span>Dashboard</span></a>
+                <a href="/includes/all-products.html"><i class="fas fa-box"></i><span>All Products</span></a>
+                <a href="/includes/dns-details.html"><i class="fas fa-plus-square"></i><span>Add Product</span></a>
+                <a href="/includes/edit-product.html"><i class="fas fa-edit"></i><span>Edit Product</span></a>
+                <a href="/includes/product-details.html"><i class="fas fa-eye"></i><span>View Product</span></a>
+                <a href="/includes/add-user.html"><i class="fas fa-user-plus"></i><span>Add User</span></a>
+                <a href="/includes/edit-user.html"><i class="fas fa-user-edit"></i><span>Edit User</span></a>
+                <a href="/includes/all-users.html"><i class="fas fa-users"></i><span>All Users</span></a>
+                <a href="/includes/role-permission.html"><i class="fas fa-user-shield"></i><span>User Roles</span></a>
+                <a href="/includes/reports.html"><i class="fas fa-chart-bar"></i><span>Reports</span></a>
+                <a href="/includes/settings.html"><i class="fas fa-cog"></i><span>Settings</span></a>
+                <a href="/includes/help.html"><i class="fas fa-question-circle"></i><span>Help</span></a>
+                <a href="/includes/logout.html"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a>
+            </div>
+
+        </div>
+
+        <div class="main-content main-wrapper w-full overflow-x-hidden flex-grow" id="main-wrapper">
+            <div class="bg-white shadow-lg rounded-xl p-4 pt-0 border-2 border-gray-200 m-1.5" style="margin-top: 60px; margin-left: 15px;">
+                <div class="top-bar flex justify-between items-center p-2 bg-white" style="position: relative; z-index: 10;">
+                    <h1 class="title text-2xl font-bold text-black-600">Product Details</h1>
+                    <div class="actions flex space-x-1 ">
+                        <button id="goBackButton" class="nav-button bg-red-600 text-white px-2 py-1 rounded shadow hover:bg-red-700 transition duration-300">
+                            Go Back
+                        </button>
+                        <button id="prevButton" class="nav-button bg-red-600 text-white px-2 py-1 rounded shadow hover:bg-red-700 transition duration-300">
+                            <i class="fas fa-chevron-left"></i> Previous
+                        </button>
+                        <button id="nextButton" class="nav-button bg-red-600 text-white px-2 py-1 rounded shadow hover:bg-red-700 transition duration-300">
+                            Next <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+                <hr class="border-t-2 border-red-600" />
+
+                <div class="flex mt-2">
+                    <div class="left-side-product bg-white border border-gray-300 rounded-lg p-4 mb-2 lg:mb-0 lg:mr-4 overflow-y-auto w-1/3 h-screen">
+                        <div class="left-side w-full">
+                            <div class="product-image relative">
+                                <img alt="Product image of a black sandal with a buckle" class="w-full h-64 object-cover" id="productImage" src="https://storage.googleapis.com/a1aa/image/4ePQHnmxLnxdRyCKR1JhnAtm3p8Rho36pttrE88eijV6odenA.jpg" />
+                                <div class="badge absolute top-2 right-2 bg-blue-500 text-white text-center p-2 rounded w-12">
+                                    458
+                                </div>
+                                <div class="badge absolute top-14 right-2 bg-blue-500 text-white text-center p-2 rounded w-12">
+                                    19
+                                </div>
+                            </div>
+                            <div class="color-options flex justify-center mt-2 space-x-2">
+                                <div class="arrow bg-gray-200 rounded-full w-10 h-10 cursor-pointer flex items-center justify-center" onclick="changeImage(-1)">
+                                    <i class="fas fa-arrow-left"></i>
+                                </div>
+                                <div class="color bg-red-500 w-9 h-9 rounded-full cursor-pointer" onclick="changeColor('https://placehold.co/300x300/ff0000/ffffff')"></div>
+                                <div class="color bg-pink-500 w-9 h-9 rounded-full cursor-pointer" onclick="changeColor('https://placehold.co/300x300/ff00ff/ffffff')"></div>
+                                <div class="color bg-yellow-500 w-9 h-9 rounded-full cursor-pointer" onclick="changeColor('https://placehold.co/300x300/ffff00/ffffff')"></div>
+                                <div class="color bg-blue-500 w-9 h-9 rounded-full cursor-pointer" onclick="changeColor('https://placehold.co/300x300/00bfff/ffffff')"></div>
+                                <div class="arrow bg-gray-200 rounded-full w-10 h-10 cursor-pointer flex items-center justify-center" onclick="changeImage(1)">
+                                    <i class="fas fa-arrow-right "></i>
+                                </div>
+                            </div>
+                            <div class="details mt-4 overflow-y: auto;" style="max-height: 200px !important; ">
+                                <table class="scrollable-table size-details-table w-full">
+                                    <thead class="bg-pink-200 sticky-header">
+                                        <tr>
+                                            <th class="  p-2">Colour</th>
+                                            <th class="  p-2">Size</th>
+                                            <th class="  p-2">Sales</th>
+                                            <th class="  p-2">Closing</th>
+                                            <th class="  p-2">Buffers</th>
+                                            <th class="  p-2">On-Way</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="  p-2">Black</td>
+                                            <td class="  p-2">12</td>
+                                            <td class="  p-2">7</td>
+                                            <td class="  p-2">45</td>
+                                            <td class="  p-2">12</td>
+                                            <td class="  p-2">1</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="  p-2">Black</td>
+                                            <td class="  p-2">12</td>
+                                            <td class="  p-2">7</td>
+                                            <td class="  p-2">45</td>
+                                            <td class="  p-2">12</td>
+                                            <td class="  p-2">1</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="  p-2">Black</td>
+                                            <td class="  p-2">12</td>
+                                            <td class="  p-2">7</td>
+                                            <td class="  p-2">45</td>
+                                            <td class="  p-2">12</td>
+                                            <td class="  p-2">1</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="  p-2">Black</td>
+                                            <td class="  p-2">12</td>
+                                            <td class="  p-2">7</td>
+                                            <td class="  p-2">45</td>
+                                            <td class="  p-2">12</td>
+                                            <td class="  p-2">1</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="  p-2">Black</td>
+                                            <td class="  p-2">12</td>
+                                            <td class="  p-2">7</td>
+                                            <td class="  p-2">45</td>
+                                            <td class="  p-2">12</td>
+                                            <td class="  p-2">1</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="  p-2">Black</td>
+                                            <td class="  p-2">12</td>
+                                            <td class="  p-2">7</td>
+                                            <td class="  p-2">45</td>
+                                            <td class="  p-2">12</td>
+                                            <td class="  p-2">1</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="  p-2">Black</td>
+                                            <td class="  p-2">12</td>
+                                            <td class="  p-2">7</td>
+                                            <td class="  p-2">45</td>
+                                            <td class="  p-2">12</td>
+                                            <td class="  p-2">1</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="  p-2">Black</td>
+                                            <td class="  p-2">12</td>
+                                            <td class="  p-2">7</td>
+                                            <td class="  p-2">45</td>
+                                            <td class="  p-2">12</td>
+                                            <td class="  p-2">1</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="  p-2">Black</td>
+                                            <td class="  p-2">12</td>
+                                            <td class="  p-2">7</td>
+                                            <td class="  p-2">45</td>
+                                            <td class="  p-2">12</td>
+                                            <td class="  p-2">1</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-section flex-1 overflow-x-hidden">
+                        <div class="table-container overflow-y-auto" style="max-height: 100px;">
+                            <table class="inventory-table w-full table-fixed text-center">
+                                <thead class="bg-pink-200 h-6">
+                                    <tr class="text-xs">
+                                        <th class="py-1">Opening</th>
+                                        <th class="py-1">Addition</th>
+                                        <th class="py-1">Sale</th>
+                                        <th class="py-1">Transfer (SMF)</th>
+                                        <th class="py-1">Closing</th>
+                                        <th class="py-1">Pending with Vendor</th>
+                                        <th class="py-1">In Transit Showroom</th>
+                                        <th class="py-1">Avg Stock</th>
+                                        <th class="py-1">% Age</th>
+                                        <th class="py-1">Buffer</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="max-h-40 overflow-y-auto">
+                                    <tr class="text-xs">
+                                        <td class="py-1">1</td>
+                                        <td class="py-1">12.12</td>
+                                        <td class="py-1">12</td>
+                                        <td class="py-1">2</td>
+                                        <td class="py-1">12</td>
+                                        <td class="py-1">2</td>
+                                        <td class="py-1">5</td>
+                                        <td class="py-1">458.5</td>
+                                        <td class="py-1">16.74</td>
+                                        <td class="py-1">5</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="table-container overflow-y-auto max-h-64">
+                            <table class="weekly-stats-table w-full table-fixed">
+                                <thead class="bg-pink-200 h-6 sticky-header">
+                                    <tr class="text-xs">
+                                        <th>
+                                            Avg wkly
+                                        </th>
+                                        <th>
+                                            Week - 0
+                                        </th>
+                                        <th>
+                                            Week - 1
+                                        </th>
+                                        <th>
+                                            Week - 2
+                                        </th>
+                                        <th>
+                                            Week - 3
+                                        </th>
+                                        <th>
+                                            Check - Out
+                                        </th>
+                                        <th>
+                                            Rank % Age
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="text-xs">
+                                        <td>
+                                            1
+                                        </td>
+                                        <td>
+                                            12
+                                        </td>
+                                        <td>
+                                            2
+                                        </td>
+                                        <td>
+                                            12
+                                        </td>
+                                        <td>
+                                            2
+                                        </td>
+                                        <td>
+                                            5
+                                        </td>
+                                        <td>
+                                            5
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="table-container overflow-y-auto max-h-64">
+                            <table class="product-info-table w-full table-fixed">
+                                <thead class="bg-pink-200 h-6 sticky-header">
+                                    <tr class="text-xs">
+                                        <th>
+                                            Brand
+                                        </th>
+                                        <th>
+                                            Category
+                                        </th>
+                                        <th>
+                                            Sub- Category
+                                        </th>
+                                        <th>
+                                            AG
+                                        </th>
+                                        <th>
+                                            Rank Sale QTY In DNS
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="text-xs">
+                                        <td>
+                                            Metro
+                                        </td>
+                                        <td>
+                                            Close
+                                        </td>
+                                        <td>
+                                            Formal
+                                        </td>
+                                        <td>
+                                            Mens Lac-up
+                                        </td>
+                                        <td>
+                                            2
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="table-container overflow-y-auto max-h-64">
+                            <table class="pricing-table w-full table-fixed">
+                                <thead class="bg-pink-200 h-6 sticky-header ">
+                                    <tr class="text-xs">
+                                        <th>
+                                            SP
+                                        </th>
+                                        <th>
+                                            Intro Dt
+                                        </th>
+                                        <th>
+                                            From Date
+                                        </th>
+                                        <th>
+                                            To Date
+                                        </th>
+                                        <th>
+                                            Vendor
+                                        </th>
+                                        <th>
+                                            Karigar
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="text-xs">
+                                        <td>
+                                            1990
+                                        </td>
+                                        <td>
+                                            16-10-2018
+                                        </td>
+                                        <td>
+                                            16-10-2018
+                                        </td>
+                                        <td>
+                                            16-10-2018
+                                        </td>
+                                        <td>
+                                            Vendor
+                                        </td>
+                                        <td>
+                                            Abc
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="table-container overflow-y-auto" style="max-height: 100px;">
+                            <table class="color-options-table w-full table-fixed">
+                                <thead class="bg-pink-200 h-6 sticky-header">
+                                    <tr class="text-xs">
+                                        <th>Color</th>
+                                        <th>Option Status</th>
+                                        <th>NHBT</th>
+                                        <th>Sale</th>
+                                        <th>Sales Contribution</th>
+                                        <th>Closing</th>
+                                        <th>Closing Contribution</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="text-xs">
+                                        <td>Black</td>
+                                        <td>SKU</td>
+                                        <td>B</td>
+                                        <td>B</td>
+                                        <td>B</td>
+                                        <td>B</td>
+                                        <td>B</td>
+                                    </tr>
+                                    <tr class="text-xs">
+                                        <td>Black</td>
+                                        <td>SKU</td>
+                                        <td>B</td>
+                                        <td>B</td>
+                                        <td>B</td>
+                                        <td>B</td>
+                                        <td>B</td>
+                                    </tr>
+                                    <tr class="text-xs">
+                                        <td>Black</td>
+                                        <td>SKU</td>
+                                        <td>B</td>
+                                        <td>B</td>
+                                        <td>B</td>
+                                        <td>B</td>
+                                        <td>B</td>
+                                    </tr>
+                                    <tr class="text-xs">
+                                        <td>Black</td>
+                                        <td>SKU</td>
+                                        <td>B</td>
+                                        <td>B</td>
+                                        <td>B</td>
+                                        <td>B</td>
+                                        <td>B</td>
+                                    </tr>
+                                    <tr class="text-xs">
+                                        <td>Black</td>
+                                        <td>SKU</td>
+                                        <td>B</td>
+                                        <td>B</td>
+                                        <td>B</td>
+                                        <td>B</td>
+                                        <td>B</td>
+                                    </tr>
+                                    <tr class="text-xs">
+                                        <td>Black</td>
+                                        <td>SKU</td>
+                                        <td>B</td>
+                                        <td>B</td>
+                                        <td>B</td>
+                                        <td>B</td>
+                                        <td>B</td>
+                                    </tr>
+                                    <tr class="text-xs">
+                                        <td>Black</td>
+                                        <td>SKU</td>
+                                        <td>B</td>
+                                        <td>B</td>
+                                        <td>B</td>
+                                        <td>B</td>
+                                        <td>B</td>
+                                    </tr>
+                                    <tr class="text-xs">
+                                        <td>Black</td>
+                                        <td>SKU</td>
+                                        <td>B</td>
+                                        <td>B</td>
+                                        <td>B</td>
+                                        <td>B</td>
+                                        <td>B</td>
+                                    </tr>
+                                    <tr class="text-xs">
+                                        <td>Black</td>
+                                        <td>SKU</td>
+                                        <td>B</td>
+                                        <td>B</td>
+                                        <td>B</td>
+                                        <td>B</td>
+                                        <td>B</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="search-container mb-1">
+                            <div class="select-wrapper">
+                                <select style="width: 80px;">
+                                    <option>State</option>
+                                    <option>ABC</option>
+                                </select>
+                                <span class="text-xs text-red-600 custom-icon">▼</span>
+                            </div>
+                            <div class="select-wrapper">
+                                <select style="width: 70px;">
+                                    <option>City</option>
+                                </select>
+                                <span class="text-xs text-red-600 custom-icon">▼</span>
+                            </div>
+                            <div class="select-wrapper">
+                                <select style="width: 120px;">
+                                    <option>Showroom</option>
+                                </select>
+                                <span class="text-xs text-red-600 custom-icon">▼</span>
+                            </div>
+                            <div class="select-wrapper">
+                                <select style="width: 150px;">
+                                    <option>Area Manager</option>
+                                </select>
+                                <span class="text-xs text-red-600 custom-icon">▼</span>
+                            </div>
+                            <button>Search</button>
+                            <button class="bg-blue-500 text-white px-2 py-1 text-sm border border-gray-300 rounded-[5px]" id="toggleShowroomButton" onclick="toggleShowroomTable()" title="Click to expand the showroom details" style="padding: 2px 15px;">
+                            Expand Details
+                            </button>
+                        </div>
+                        <div class="table-container overflow-y-auto" id="showroomTableContainer">
+                            <table class="scrollable-table showroom-details-table w-full table-fixed text-center">
+                                <thead class="bg-pink-200 h-6 sticky-header">
+                                    <tr class="text-xs">
+                                        <th class="py-1">Showroom</th>
+                                        <th class="py-1">Opening</th>
+                                        <th class="py-1">Addition</th>
+                                        <th class="py-1">Sale</th>
+                                        <th class="py-1">Transfer (SMF onway)</th>
+                                        <th class="py-1">Closing</th>
+                                        <th class="py-1">Buffer</th>
+                                        <th class="py-1">Transit (onway)</th>
+                                        <th class="py-1">Status</th>
+                                        <th class="py-1">Remark</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="text-xs">
+                                        <td class="py-1">Showroom 1</td>
+                                        <td class="py-1">12</td>
+                                        <td class="py-1">12</td>
+                                        <td class="py-1">12</td>
+                                        <td class="py-1">2</td>
+                                        <td class="py-1">5</td>
+                                        <td class="py-1">5</td>
+                                        <td class="py-1">5</td>
+                                        <td class="py-1">Active</td>
+                                        <td class="py-1">Good</td>
+                                    </tr>
+                                    <tr class="text-xs">
+                                        <td class="py-1">Showroom 1</td>
+                                        <td class="py-1">12</td>
+                                        <td class="py-1">12</td>
+                                        <td class="py-1">12</td>
+                                        <td class="py-1">2</td>
+                                        <td class="py-1">5</td>
+                                        <td class="py-1">5</td>
+                                        <td class="py-1">5</td>
+                                        <td class="py-1">Active</td>
+                                        <td class="py-1">Good</td>
+                                    </tr>
+                                    <tr class="text-xs">
+                                        <td class="py-1">Showroom 2</td>
+                                        <td class="py-1">13</td>
+                                        <td class="py-1">11</td>
+                                        <td class="py-1">10</td>
+                                        <td class="py-1">3</td>
+                                        <td class="py-1">6</td>
+                                        <td class="py-1">4</td>
+                                        <td class="py-1">6</td>
+                                        <td class="py-1">Inactive</td>
+                                        <td class="py-1">Review</td>
+                                    </tr>
+                                    <tr class="text-xs">
+                                        <td class="py-1">Showroom 3</td>
+                                        <td class="py-1">14</td>
+                                        <td class="py-1">10</td>
+                                        <td class="py-1">9</td>
+                                        <td class="py-1">4</td>
+                                        <td class="py-1">7</td>
+                                        <td class="py-1">3</td>
+                                        <td class="py-1">7</td>
+                                        <td class="py-1">Active</td>
+                                        <td class="py-1">Good</td>
+                                    </tr>
+                                    <tr class="text-xs">
+                                        <td class="py-1">Showroom 3</td>
+                                        <td class="py-1">14</td>
+                                        <td class="py-1">10</td>
+                                        <td class="py-1">9</td>
+                                        <td class="py-1">4</td>
+                                        <td class="py-1">7</td>
+                                        <td class="py-1">3</td>
+                                        <td class="py-1">7</td>
+                                        <td class="py-1">Active</td>
+                                        <td class="py-1">Good</td>
+                                    </tr>
+                                    <tr class="text-xs">
+                                        <td class="py-1">Showroom 3</td>
+                                        <td class="py-1">14</td>
+                                        <td class="py-1">10</td>
+                                        <td class="py-1">9</td>
+                                        <td class="py-1">4</td>
+                                        <td class="py-1">7</td>
+                                        <td class="py-1">3</td>
+                                        <td class="py-1">7</td>
+                                        <td class="py-1">Active</td>
+                                        <td class="py-1">Good</td>
+                                    </tr>
+                                    <tr class="text-xs">
+                                        <td class="py-1">Showroom 3</td>
+                                        <td class="py-1">14</td>
+                                        <td class="py-1">10</td>
+                                        <td class="py-1">9</td>
+                                        <td class="py-1">4</td>
+                                        <td class="py-1">7</td>
+                                        <td class="py-1">3</td>
+                                        <td class="py-1">7</td>
+                                        <td class="py-1">Active</td>
+                                        <td class="py-1">Good</td>
+                                    </tr>
+                                    <tr class="text-xs">
+                                        <td class="py-1">Showroom 3</td>
+                                        <td class="py-1">14</td>
+                                        <td class="py-1">10</td>
+                                        <td class="py-1">9</td>
+                                        <td class="py-1">4</td>
+                                        <td class="py-1">7</td>
+                                        <td class="py-1">3</td>
+                                        <td class="py-1">7</td>
+                                        <td class="py-1">Active</td>
+                                        <td class="py-1">Good</td>
+                                    </tr>
+                                    <tr class="text-xs">
+                                        <td class="py-1">Showroom 2</td>
+                                        <td class="py-1">13</td>
+                                        <td class="py-1">11</td>
+                                        <td class="py-1">10</td>
+                                        <td class="py-1">3</td>
+                                        <td class="py-1">6</td>
+                                        <td class="py-1">4</td>
+                                        <td class="py-1">6</td>
+                                        <td class="py-1">Inactive</td>
+                                        <td class="py-1">Review</td>
+                                    </tr>
+                                    <tr class="text-xs">
+                                        <td class="py-1">Showroom 3</td>
+                                        <td class="py-1">14</td>
+                                        <td class="py-1">10</td>
+                                        <td class="py-1">9</td>
+                                        <td class="py-1">4</td>
+                                        <td class="py-1">7</td>
+                                        <td class="py-1">3</td>
+                                        <td class="py-1">7</td>
+                                        <td class="py-1">Active</td>
+                                        <td class="py-1">Good</td>
+                                    </tr>
+                                    <tr class="text-xs">
+                                        <td class="py-1">Showroom 3</td>
+                                        <td class="py-1">14</td>
+                                        <td class="py-1">10</td>
+                                        <td class="py-1">9</td>
+                                        <td class="py-1">4</td>
+                                        <td class="py-1">7</td>
+                                        <td class="py-1">3</td>
+                                        <td class="py-1">7</td>
+                                        <td class="py-1">Active</td>
+                                        <td class="py-1">Good</td>
+                                    </tr>
+                                    <tr class="text-xs">
+                                        <td class="py-1">Showroom 3</td>
+                                        <td class="py-1">14</td>
+                                        <td class="py-1">10</td>
+                                        <td class="py-1">9</td>
+                                        <td class="py-1">4</td>
+                                        <td class="py-1">7</td>
+                                        <td class="py-1">3</td>
+                                        <td class="py-1">7</td>
+                                        <td class="py-1">Active</td>
+                                        <td class="py-1">Good</td>
+                                    </tr>
+                                    <tr class="text-xs">
+                                        <td class="py-1">Showroom 3</td>
+                                        <td class="py-1">14</td>
+                                        <td class="py-1">10</td>
+                                        <td class="py-1">9</td>
+                                        <td class="py-1">4</td>
+                                        <td class="py-1">7</td>
+                                        <td class="py-1">3</td>
+                                        <td class="py-1">7</td>
+                                        <td class="py-1">Active</td>
+                                        <td class="py-1">Good</td>
+                                    </tr>
+                                    <tr class="text-xs">
+                                        <td class="py-1">Showroom 3</td>
+                                        <td class="py-1">14</td>
+                                        <td class="py-1">10</td>
+                                        <td class="py-1">9</td>
+                                        <td class="py-1">4</td>
+                                        <td class="py-1">7</td>
+                                        <td class="py-1">3</td>
+                                        <td class="py-1">7</td>
+                                        <td class="py-1">Active</td>
+                                        <td class="py-1">Good</td>
+                                    </tr>
+                                    <tr class="text-xs">
+                                        <td class="py-1">Showroom 1</td>
+                                        <td class="py-1">12</td>
+                                        <td class="py-1">12</td>
+                                        <td class="py-1">12</td>
+                                        <td class="py-1">2</td>
+                                        <td class="py-1">5</td>
+                                        <td class="py-1">5</td>
+                                        <td class="py-1">5</td>
+                                        <td class="py-1">Active</td>
+                                        <td class="py-1">Good</td>
+                                    </tr>
+                                    <tr class="text-xs">
+                                        <td class="py-1">Showroom 2</td>
+                                        <td class="py-1">13</td>
+                                        <td class="py-1">11</td>
+                                        <td class="py-1">10</td>
+                                        <td class="py-1">3</td>
+                                        <td class="py-1">6</td>
+                                        <td class="py-1">4</td>
+                                        <td class="py-1">6</td>
+                                        <td class="py-1">Inactive</td>
+                                        <td class="py-1">Review</td>
+                                    </tr>
+                                    <tr class="text-xs">
+                                        <td class="py-1">Showroom 3</td>
+                                        <td class="py-1">14</td>
+                                        <td class="py-1">10</td>
+                                        <td class="py-1">9</td>
+                                        <td class="py-1">4</td>
+                                        <td class="py-1">7</td>
+                                        <td class="py-1">3</td>
+                                        <td class="py-1">7</td>
+                                        <td class="py-1">Active</td>
+                                        <td class="py-1">Good</td>
+                                    </tr>
+                                    <tr class="text-xs">
+                                        <td class="py-1">Showroom 3</td>
+                                        <td class="py-1">14</td>
+                                        <td class="py-1">10</td>
+                                        <td class="py-1">9</td>
+                                        <td class="py-1">4</td>
+                                        <td class="py-1">7</td>
+                                        <td class="py-1">3</td>
+                                        <td class="py-1">7</td>
+                                        <td class="py-1">Active</td>
+                                        <td class="py-1">Good</td>
+                                    </tr>
+                                    <tr class="text-xs">
+                                        <td class="py-1">Showroom 3</td>
+                                        <td class="py-1">14</td>
+                                        <td class="py-1">10</td>
+                                        <td class="py-1">9</td>
+                                        <td class="py-1">4</td>
+                                        <td class="py-1">7</td>
+                                        <td class="py-1">3</td>
+                                        <td class="py-1">7</td>
+                                        <td class="py-1">Active</td>
+                                        <td class="py-1">Good</td>
+                                    </tr>
+                                    <tr class="text-xs">
+                                        <td class="py-1">Showroom 3</td>
+                                        <td class="py-1">14</td>
+                                        <td class="py-1">10</td>
+                                        <td class="py-1">9</td>
+                                        <td class="py-1">4</td>
+                                        <td class="py-1">7</td>
+                                        <td class="py-1">3</td>
+                                        <td class="py-1">7</td>
+                                        <td class="py-1">Active</td>
+                                        <td class="py-1">Good</td>
+                                    </tr>
+                                    <tr class="text-xs">
+                                        <td class="py-1">Showroom 3</td>
+                                        <td class="py-1">14</td>
+                                        <td class="py-1">10</td>
+                                        <td class="py-1">9</td>
+                                        <td class="py-1">4</td>
+                                        <td class="py-1">7</td>
+                                        <td class="py-1">3</td>
+                                        <td class="py-1">7</td>
+                                        <td class="py-1">Active</td>
+                                        <td class="py-1">Good</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

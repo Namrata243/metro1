@@ -1,0 +1,110 @@
+:root {
+    --primary-color: #FC0000;
+    --button-red: #FC0000;
+    --table-header-pink: #ffc0cb;
+    --table-row-pink: #ffe4e8;
+    --border-color: #ddd;
+    --badge-blue: #00BCD4;
+    --header-height: 64px;
+    --font-size-small: 12px;
+    --font-size-medium: 14px;
+    --font-size-large: 24px;
+}
+
+.main-wrapper {
+    margin-top: 50px !important;
+}
+
+.container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 600px !important;
+}
+
+.form-group {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    gap: 20px;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(183, 28, 28, 0.1);
+}
+
+.form-group input.error {
+    border-color: var(--primary-color);
+}
+
+.user-status {
+    text-align: center;
+    margin: 20px 0;
+    padding: 15px;
+    background-color: var(--bg-gray);
+    border-radius: 6px;
+}
+
+.user-status label {
+    margin: 0 10px;
+    font-size: 16px;
+    color: var(--secondary-color);
+}
+
+.user-status input[type="radio"] {
+    margin-right: 5px;
+}
+
+.user-status .status-group {
+    display: inline-flex;
+    align-items: center;
+    margin: 0 15px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.buttons button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.buttons .submit {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.buttons .submit:hover {
+    background-color: #8b1515;
+}
+
+.buttons .cancel {
+    background-color: white;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+}
+
+.buttons .cancel:hover {
+    background-color: var(--bg-gray);
+}

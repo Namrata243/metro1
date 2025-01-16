@@ -1,0 +1,4 @@
+Options +Includes
+AddType text/html .html
+AddHandler server-status .html
+AddHandler server-status .html

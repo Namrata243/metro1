@@ -1,0 +1,23 @@
+.bg-pink {
+    background-color: #E30024 !important;
+    height: 50px;
+    margin-bottom: 15px !important;
+}
+
+.main-wrapper {
+    margin-top: 60px !important;
+}
+
+.custom-checkbox {
+    width: 20px;
+    height: 20px;
+    border: 0.5px solid black;
+    /* background-color: lightgrey !important; */
+    /* appearance: none; */
+}
+
+
+/* .custom-checkbox:checked {
+    background-color: #fc0000 !important;
+    border-color: #fc0000;
+} */

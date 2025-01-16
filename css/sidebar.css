@@ -1,0 +1,116 @@
+.sidebar {
+    top: 40px;
+    left: 0;
+    width: 200px;
+    background-color: #000;
+    transition: width 0.3s ease;
+    overflow: hidden;
+}
+
+.sidebar.collapsed {
+    width: 40px !important;
+}
+
+.sidebar img {
+    width: 150px;
+    display: block;
+    margin: 0 auto 20px;
+    max-height: 50px;
+    object-fit: contain;
+}
+
+.sidebar a {
+    display: block;
+    color: #fff;
+    padding: 10px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.sidebar a:hover,
+.sidebar a.active {
+    background-color: #FC0000;
+}
+
+.sidebar a i {
+    font-size: 16px;
+    margin-right: 20px;
+}
+
+.sidebar.collapsed a span,
+.sidebar.collapsed img {
+    display: none !important;
+}
+
+.sidebar.collapsed a i {
+    margin-right: 0;
+}
+
+.header-title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.navigation {
+    display: flex;
+    gap: 7px;
+}
+
+.navigation button {
+    background-color: var(--button-red);
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.navigation button:hover {
+    background-color: #cc0000;
+}
+
+#sidebar {
+    width: 200px;
+    transition: width 0.3s ease;
+    background-color: #000;
+    color: #fff;
+    position: fixed;
+    top: 50px;
+    left: 0;
+    height: calc(100vh - 40px);
+    overflow: hidden;
+}
+
+.main-wrapper {
+    transition: margin-left 0.3s ease, width 0.3s ease;
+    margin-left: 200px;
+    width: calc(100% - 200px);
+}
+
+
+/* .main-content .bg-white.shadow-lg.rounded-xl.p-6.border-2.border-gray-200 {
+    margin-left: 30px;
+    transition: width 0.3s ease;
+} */
+
+.sidebar.collapsed~.main-wrapper {
+    margin-left: 0;
+    width: 100%;
+}
+
+
+/* 
+.sidebar.collapsed~.main-wrapper .main-content .bg-white.shadow-lg.rounded-xl.p-6.border-2.border-gray-200 {
+    width: 100% !important;
+    margin: 0 auto;
+}
+
+.sidebar.collapsed+.main-wrapper {
+    margin-left: 40px;
+    width: calc(100% - 40px);
+} */
+
+.sidebar.collapsed a span {
+    display: none !important;
+}
